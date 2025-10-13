@@ -62,7 +62,7 @@ export default function Home() {
       <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
         {/* Background Video Effect */}
         <div className="absolute inset-0 bg-gradient-radial from-transparent via-black/50 to-black z-10" />
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920')] bg-cover bg-center opacity-30" />
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=1920')] bg-cover bg-center opacity-20" />
         
         {/* Animated particles */}
         <div className="absolute inset-0 z-0">
