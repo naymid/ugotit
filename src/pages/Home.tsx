@@ -95,9 +95,9 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="mb-8"
+            className="mb-8 px-4"
           >
-            <h1 className="text-6xl md:text-8xl font-bold tracking-tighter mb-6">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-4 sm:mb-6">
               RIDE{" "}
               <motion.span
                 className="text-amber-500"
@@ -108,7 +108,7 @@ export default function Home() {
               </motion.span>
               .
             </h1>
-            <p className="text-xl md:text-2xl text-zinc-400 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-zinc-400 max-w-3xl mx-auto leading-relaxed px-4">
               Premium all-terrain electric scooters engineered for freedom, power, and precision.
             </p>
           </motion.div>
@@ -117,23 +117,23 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.6 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-8 sm:mb-12 px-4"
           >
             <Button
               size="lg"
               onClick={() => setQuizOpen(true)}
-              className="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-black font-bold text-lg px-8 py-6 rounded-full shadow-lg shadow-amber-500/50"
+              className="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-black font-bold text-base sm:text-lg px-6 sm:px-8 py-5 sm:py-6 rounded-full shadow-lg shadow-amber-500/50 w-full sm:w-auto"
             >
               Find Your Scooter
-              <ArrowRight className="ml-2 h-5 w-5" />
+              <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
             </Button>
             <Button
               size="lg"
               variant="outline"
               onClick={() => window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank")}
-              className="border-2 border-amber-500/50 text-amber-500 hover:bg-amber-500/10 font-bold text-lg px-8 py-6 rounded-full"
+              className="border-2 border-amber-500/50 text-amber-500 hover:bg-amber-500/10 font-bold text-base sm:text-lg px-6 sm:px-8 py-5 sm:py-6 rounded-full w-full sm:w-auto"
             >
-              <Play className="mr-2 h-5 w-5" />
+              <Play className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
               Watch in Action
             </Button>
           </motion.div>
@@ -142,12 +142,12 @@ export default function Home() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.8, duration: 1.2 }}
-            className="relative"
+            className="relative px-4"
           >
             <img
               src="https://harmless-tapir-303.convex.cloud/api/storage/e11dfd25-daaf-488e-9070-5a5fc7ca7a3d"
               alt="Elk Cruiser"
-              className="max-w-2xl mx-auto drop-shadow-2xl"
+              className="w-full max-w-sm sm:max-w-md md:max-w-xl lg:max-w-2xl mx-auto drop-shadow-2xl"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-amber-500/20 to-transparent blur-3xl -z-10" />
           </motion.div>
@@ -165,9 +165,9 @@ export default function Home() {
       </section>
 
       {/* Social Proof Strip */}
-      <section className="py-8 border-y border-zinc-800 bg-zinc-900/50">
+      <section className="py-6 sm:py-8 border-y border-zinc-800 bg-zinc-900/50">
         <div className="container mx-auto px-4">
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+          <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-6 md:gap-8 lg:gap-12">
             {[
               { icon: Truck, label: "Free Shipping" },
               { icon: Shield, label: "1-Year Warranty" },
@@ -194,10 +194,10 @@ export default function Home() {
       </section>
 
       {/* Fall Sale Banner */}
-      <section className="py-4 bg-gradient-to-r from-amber-600 to-amber-500">
+      <section className="py-3 sm:py-4 bg-gradient-to-r from-amber-600 to-amber-500">
         <div className="container mx-auto px-4 text-center">
-          <p className="text-black font-bold text-lg">
-            🍂 FALL EVENT — Save $250 With Code <span className="bg-black text-amber-500 px-3 py-1 rounded">FALL</span>
+          <p className="text-black font-bold text-sm sm:text-base md:text-lg">
+            🍂 FALL EVENT — Save $250 With Code <span className="bg-black text-amber-500 px-2 sm:px-3 py-1 rounded text-xs sm:text-sm md:text-base">FALL</span>
           </p>
         </div>
       </section>
@@ -209,12 +209,12 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-12 sm:mb-16 px-4"
           >
-            <h2 className="text-5xl md:text-6xl font-bold tracking-tighter mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter mb-3 sm:mb-4">
               {selectedCategory ? `${selectedCategory}-WHEEL SCOOTERS` : "FEATURED SCOOTERS"}
             </h2>
-            <p className="text-xl text-zinc-400">Engineered for dominance</p>
+            <p className="text-base sm:text-lg md:text-xl text-zinc-400">Engineered for dominance</p>
             {selectedCategory && (
               <Button
                 variant="outline"
@@ -226,7 +226,7 @@ export default function Home() {
             )}
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
             {displayedScooters?.map((scooter, idx) => (
               <ScooterCard key={scooter.id} scooter={scooter} index={idx} onViewDetails={scrollToSection} />
             ))}
@@ -359,37 +359,37 @@ function PerformanceSection() {
   return (
     <section ref={ref} className="py-24 bg-black">
       <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-5xl md:text-6xl font-bold tracking-tighter mb-4">
-            PERFORMANCE UNLEASHED
-          </h2>
-          <p className="text-xl text-zinc-400">Engineering excellence in every metric</p>
-        </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12 sm:mb-16 px-4"
+          >
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter mb-3 sm:mb-4">
+              PERFORMANCE UNLEASHED
+            </h2>
+            <p className="text-base sm:text-lg md:text-xl text-zinc-400">Engineering excellence in every metric</p>
+          </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
           {stats.map((stat, idx) => (
             <motion.div
               key={stat.label}
               initial={{ opacity: 0, scale: 0.8 }}
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ delay: idx * 0.1, duration: 0.5 }}
-              className="relative p-8 bg-gradient-to-br from-zinc-900 to-black border border-zinc-800 rounded-xl group hover:border-amber-500/50 transition-all"
+              className="relative p-4 sm:p-6 md:p-8 bg-gradient-to-br from-zinc-900 to-black border border-zinc-800 rounded-xl group hover:border-amber-500/50 transition-all"
             >
               <div className="text-center">
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={isInView ? { scale: 1 } : {}}
                   transition={{ delay: idx * 0.1 + 0.3, type: "spring" }}
-                  className="text-5xl font-bold text-amber-500 mb-2"
+                  className="text-3xl sm:text-4xl md:text-5xl font-bold text-amber-500 mb-1 sm:mb-2"
                 >
                   {stat.prefix}{stat.value}{stat.unit}
                 </motion.div>
-                <p className="text-zinc-400 font-medium">{stat.label}</p>
+                <p className="text-zinc-400 font-medium text-xs sm:text-sm md:text-base">{stat.label}</p>
               </div>
               <div className="absolute inset-0 bg-amber-500/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-xl" />
             </motion.div>
@@ -435,7 +435,7 @@ function WhyElkSection() {
           <p className="text-xl text-zinc-400">Why thousands choose Elk</p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {features.map((feature, idx) => (
             <motion.div
               key={feature.label}
@@ -504,7 +504,7 @@ function CategorySection({ onCategorySelect, onNavigate }: { onCategorySelect: (
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
           {categories.map((category, idx) => (
             <motion.div
               key={category.title}
@@ -513,7 +513,7 @@ function CategorySection({ onCategorySelect, onNavigate }: { onCategorySelect: (
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
               onClick={() => handleCategoryClick(category.wheels)}
-              className={`group relative overflow-hidden rounded-2xl h-96 ${category.wheels ? 'cursor-pointer' : 'cursor-default opacity-60'}`}
+              className={`group relative overflow-hidden rounded-2xl h-64 sm:h-80 md:h-96 ${category.wheels ? 'cursor-pointer' : 'cursor-default opacity-60'}`}
             >
               <img
                 src={category.image}
@@ -521,8 +521,8 @@ function CategorySection({ onCategorySelect, onNavigate }: { onCategorySelect: (
                 className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
-              <div className="absolute inset-0 flex flex-col justify-end p-8">
-                <h3 className="text-3xl font-bold mb-2 group-hover:text-amber-500 transition-colors">
+              <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-6 md:p-8">
+                <h3 className="text-2xl sm:text-3xl font-bold mb-2 group-hover:text-amber-500 transition-colors">
                   {category.title}
                 </h3>
                 <p className="text-zinc-300 mb-1">{category.subtitle}</p>
@@ -555,26 +555,26 @@ function CTASection({ onQuizOpen, onNavigate }: { onQuizOpen: () => void; onNavi
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-5xl md:text-7xl font-bold tracking-tighter mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold tracking-tighter mb-4 sm:mb-6 px-4">
             YOUR ADVENTURE STARTS NOW
           </h2>
-          <p className="text-xl text-zinc-300 max-w-2xl mx-auto mb-12">
+          <p className="text-base sm:text-lg md:text-xl text-zinc-300 max-w-2xl mx-auto mb-8 sm:mb-12 px-4">
             Join thousands of Elk riders. Free shipping, 1-year warranty, and expert support on every scooter.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
             <Button
               size="lg"
               onClick={() => onNavigate("scooters")}
-              className="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-black font-bold text-lg px-12 py-6 rounded-full"
+              className="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-black font-bold text-base sm:text-lg px-8 sm:px-12 py-5 sm:py-6 rounded-full w-full sm:w-auto"
             >
               Shop All Scooters
-              <ArrowRight className="ml-2 h-5 w-5" />
+              <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
             </Button>
             <Button
               size="lg"
               variant="outline"
               onClick={onQuizOpen}
-              className="border-2 border-white text-white hover:bg-white hover:text-black font-bold text-lg px-12 py-6 rounded-full"
+              className="border-2 border-white text-white hover:bg-white hover:text-black font-bold text-base sm:text-lg px-8 sm:px-12 py-5 sm:py-6 rounded-full w-full sm:w-auto"
             >
               Find My Model
             </Button>
@@ -589,7 +589,7 @@ function Footer() {
   return (
     <footer className="bg-black border-t border-amber-500/20 py-16">
       <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-4 gap-12 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 sm:gap-12 mb-8 sm:mb-12">
           <div>
             <div className="flex items-center gap-2 mb-4">
               <Mountain className="h-8 w-8 text-amber-500" />
