@@ -127,15 +127,6 @@ export function ScooterQuiz({ open, onClose }: QuizProps) {
             <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-amber-600/20 rounded-full blur-3xl animate-pulse delay-1000" />
           </div>
 
-          <Button
-            variant="ghost"
-            size="icon"
-            className="absolute top-4 right-4 z-10 text-white hover:bg-white/10"
-            onClick={onClose}
-          >
-            <X className="h-5 w-5" />
-          </Button>
-
           <AnimatePresence mode="wait">
             {!showResults ? (
               <motion.div
