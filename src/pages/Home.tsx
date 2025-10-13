@@ -59,7 +59,7 @@ export default function Home() {
       <Navbar onNavigate={scrollToSection} />
       
       {/* Hero Section */}
-      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
         {/* Background Video Effect */}
         <div className="absolute inset-0 bg-gradient-radial from-transparent via-black/50 to-black z-10" />
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920')] bg-cover bg-center opacity-30" />
