@@ -27,6 +27,7 @@ import {
 
 export default function Home() {
   const [quizOpen, setQuizOpen] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
   const scooters = useQuery(api.scooters.getAllScooters);
   
   const heroRef = useRef(null);
@@ -42,9 +43,20 @@ export default function Home() {
     ["elk-cruiser", "elk-jubilee-x", "elk-patriot", "elk-thunderbolt"].includes(s.id)
   );
 
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
+  const displayedScooters = selectedCategory 
+    ? scooters?.filter(s => s.wheels === selectedCategory)
+    : featuredScooters;
+
   return (
     <div className="bg-black text-white overflow-x-hidden">
-      <Navbar />
+      <Navbar onNavigate={scrollToSection} />
       
       {/* Hero Section */}
       <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -118,6 +130,7 @@ export default function Home() {
             <Button
               size="lg"
               variant="outline"
+              onClick={() => window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank")}
               className="border-2 border-amber-500/50 text-amber-500 hover:bg-amber-500/10 font-bold text-lg px-8 py-6 rounded-full"
             >
               <Play className="mr-2 h-5 w-5" />
@@ -199,14 +212,23 @@ export default function Home() {
             className="text-center mb-16"
           >
             <h2 className="text-5xl md:text-6xl font-bold tracking-tighter mb-4">
-              FEATURED SCOOTERS
+              {selectedCategory ? `${selectedCategory}-WHEEL SCOOTERS` : "FEATURED SCOOTERS"}
             </h2>
             <p className="text-xl text-zinc-400">Engineered for dominance</p>
+            {selectedCategory && (
+              <Button
+                variant="outline"
+                onClick={() => setSelectedCategory(null)}
+                className="mt-4 border-amber-500/30 text-amber-500 hover:bg-amber-500/10"
+              >
+                View All Scooters
+              </Button>
+            )}
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {featuredScooters?.map((scooter, idx) => (
-              <ScooterCard key={scooter.id} scooter={scooter} index={idx} />
+            {displayedScooters?.map((scooter, idx) => (
+              <ScooterCard key={scooter.id} scooter={scooter} index={idx} onViewDetails={scrollToSection} />
             ))}
           </div>
         </div>
@@ -219,10 +241,10 @@ export default function Home() {
       <WhyElkSection />
 
       {/* Category Explorer */}
-      <CategorySection />
+      <CategorySection onCategorySelect={setSelectedCategory} onNavigate={scrollToSection} />
 
       {/* CTA Section */}
-      <CTASection onQuizOpen={() => setQuizOpen(true)} />
+      <CTASection onQuizOpen={() => setQuizOpen(true)} onNavigate={scrollToSection} />
 
       {/* Footer */}
       <Footer />
@@ -233,7 +255,7 @@ export default function Home() {
   );
 }
 
-function ScooterCard({ scooter, index }: { scooter: any; index: number }) {
+function ScooterCard({ scooter, index, onViewDetails }: { scooter: any; index: number; onViewDetails: (id: string) => void }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
 
@@ -307,7 +329,11 @@ function ScooterCard({ scooter, index }: { scooter: any; index: number }) {
             </div>
           </div>
 
-          <Button className="w-full bg-amber-500 hover:bg-amber-600 text-black font-bold" disabled={!scooter.inStock}>
+          <Button 
+            className="w-full bg-amber-500 hover:bg-amber-600 text-black font-bold" 
+            disabled={!scooter.inStock}
+            onClick={() => onViewDetails("scooters")}
+          >
             View Details
             <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
@@ -432,27 +458,37 @@ function WhyElkSection() {
   );
 }
 
-function CategorySection() {
+function CategorySection({ onCategorySelect, onNavigate }: { onCategorySelect: (wheels: number) => void; onNavigate: (id: string) => void }) {
   const categories = [
     {
       title: "Two Wheels",
       subtitle: "Agile Performance",
       count: "4 Models",
+      wheels: 2,
       image: "https://harmless-tapir-303.convex.cloud/api/storage/7effa899-7bab-4f0c-9bc2-ad79713126bd",
     },
     {
       title: "Three Wheels",
       subtitle: "Stable Power",
       count: "3 Models",
+      wheels: 3,
       image: "https://harmless-tapir-303.convex.cloud/api/storage/90c56e58-647e-430d-980a-a15415c694db",
     },
     {
       title: "Accessories",
       subtitle: "Upgrade Your Ride",
       count: "Coming Soon",
+      wheels: null,
       image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800",
     },
   ];
+
+  const handleCategoryClick = (wheels: number | null) => {
+    if (wheels) {
+      onCategorySelect(wheels);
+      onNavigate("scooters");
+    }
+  };
 
   return (
     <section className="py-24 bg-black">
@@ -476,7 +512,8 @@ function CategorySection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
-              className="group relative overflow-hidden rounded-2xl cursor-pointer h-96"
+              onClick={() => handleCategoryClick(category.wheels)}
+              className={`group relative overflow-hidden rounded-2xl h-96 ${category.wheels ? 'cursor-pointer' : 'cursor-default opacity-60'}`}
             >
               <img
                 src={category.image}
@@ -490,7 +527,9 @@ function CategorySection() {
                 </h3>
                 <p className="text-zinc-300 mb-1">{category.subtitle}</p>
                 <p className="text-sm text-amber-500 font-medium">{category.count}</p>
-                <ArrowRight className="h-6 w-6 text-amber-500 mt-4 group-hover:translate-x-2 transition-transform" />
+                {category.wheels && (
+                  <ArrowRight className="h-6 w-6 text-amber-500 mt-4 group-hover:translate-x-2 transition-transform" />
+                )}
               </div>
             </motion.div>
           ))}
@@ -500,7 +539,7 @@ function CategorySection() {
   );
 }
 
-function CTASection({ onQuizOpen }: { onQuizOpen: () => void }) {
+function CTASection({ onQuizOpen, onNavigate }: { onQuizOpen: () => void; onNavigate: (id: string) => void }) {
   return (
     <section className="py-32 relative overflow-hidden">
       <img
@@ -525,6 +564,7 @@ function CTASection({ onQuizOpen }: { onQuizOpen: () => void }) {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
               size="lg"
+              onClick={() => onNavigate("scooters")}
               className="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-black font-bold text-lg px-12 py-6 rounded-full"
             >
               Shop All Scooters

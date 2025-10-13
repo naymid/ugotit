@@ -5,7 +5,11 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu, Mountain } from "lucide-react";
 import { useNavigate } from "react-router";
 
-export function Navbar() {
+interface NavbarProps {
+  onNavigate?: (id: string) => void;
+}
+
+export function Navbar({ onNavigate }: NavbarProps = {}) {
   const [scrolled, setScrolled] = useState(false);
   const navigate = useNavigate();
 
@@ -18,12 +22,23 @@ export function Navbar() {
   }, []);
 
   const navItems = [
-    { label: "All Scooters", href: "#scooters" },
-    { label: "Two Wheels", href: "#two-wheels" },
-    { label: "Three Wheels", href: "#three-wheels" },
-    { label: "Accessories", href: "#accessories" },
-    { label: "Find Your Scooter", href: "#quiz" },
+    { label: "All Scooters", href: "scooters" },
+    { label: "Two Wheels", href: "two-wheels" },
+    { label: "Three Wheels", href: "three-wheels" },
+    { label: "Accessories", href: "accessories" },
+    { label: "Find Your Scooter", href: "quiz" },
   ];
+
+  const handleNavClick = (href: string) => {
+    if (onNavigate) {
+      onNavigate(href);
+    } else {
+      const element = document.getElementById(href);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+  };
 
   return (
     <motion.nav
@@ -49,20 +64,23 @@ export function Navbar() {
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-8">
             {navItems.map((item) => (
-              <a
+              <button
                 key={item.label}
-                href={item.href}
+                onClick={() => handleNavClick(item.href)}
                 className="text-sm font-medium text-zinc-300 hover:text-amber-500 transition-colors relative group"
               >
                 {item.label}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-500 group-hover:w-full transition-all duration-300" />
-              </a>
+              </button>
             ))}
           </div>
 
           {/* CTA Button */}
           <div className="hidden lg:block">
-            <Button className="bg-amber-500 hover:bg-amber-600 text-black font-bold px-6 rounded-full">
+            <Button 
+              onClick={() => handleNavClick("scooters")}
+              className="bg-amber-500 hover:bg-amber-600 text-black font-bold px-6 rounded-full"
+            >
               Shop Now
             </Button>
           </div>
@@ -77,18 +95,21 @@ export function Navbar() {
             <SheetContent side="right" className="bg-black/95 backdrop-blur-lg border-zinc-800">
               <div className="flex flex-col gap-6 mt-8">
                 {navItems.map((item, idx) => (
-                  <motion.a
+                  <motion.button
                     key={item.label}
-                    href={item.href}
+                    onClick={() => handleNavClick(item.href)}
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: idx * 0.1 }}
-                    className="text-lg font-medium text-zinc-300 hover:text-amber-500 transition-colors"
+                    className="text-lg font-medium text-zinc-300 hover:text-amber-500 transition-colors text-left"
                   >
                     {item.label}
-                  </motion.a>
+                  </motion.button>
                 ))}
-                <Button className="bg-amber-500 hover:bg-amber-600 text-black font-bold mt-4">
+                <Button 
+                  onClick={() => handleNavClick("scooters")}
+                  className="bg-amber-500 hover:bg-amber-600 text-black font-bold mt-4"
+                >
                   Shop Now
                 </Button>
               </div>
