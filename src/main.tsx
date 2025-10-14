@@ -10,6 +10,7 @@ import "./index.css";
 import Home from "./pages/Home.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import AllScooters from "./pages/AllScooters.tsx";
+import ProductPage from "./pages/ProductPage.tsx";
 import "./types/global.d.ts";
 
 const convex = new ConvexReactClient(import.meta.env.VITE_CONVEX_URL as string);
@@ -49,6 +50,7 @@ createRoot(document.getElementById("root")!).render(
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/scooters" element={<AllScooters />} />
+            <Route path="/scooter/:id" element={<ProductPage />} />
             <Route path="/auth" element={<AuthPage redirectAfterAuth="/" />}/>
             <Route path="*" element={<NotFound />} />
           </Routes>
