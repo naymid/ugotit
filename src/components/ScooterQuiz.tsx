@@ -119,7 +119,7 @@ export function ScooterQuiz({ open, onClose }: QuizProps) {
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="max-w-3xl p-0 border-amber-500/20 max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-3xl p-0 border-amber-500/20 max-h-[90vh] overflow-y-auto" showCloseButton={true}>
         <div className="relative bg-gradient-to-br from-black via-zinc-900 to-black min-h-[500px]">
           {/* Animated background */}
           <div className="absolute inset-0 opacity-20">
