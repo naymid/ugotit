@@ -42,7 +42,7 @@ export const getAllScooters = query({
         name: "Elk Cruiser",
         wheels: 2,
         power: "3000W",
-        maxSpeed: "45 MPH",
+        maxSpeed: "35 MPH",
         range: "30 mi",
         tire: "Normal fat",
         price: 1849.99,
@@ -105,9 +105,9 @@ export const getAllScooters = query({
         id: "elk-thunderbolt",
         name: "Elk ThunderBolt",
         wheels: 2,
-        power: "5000W",
-        maxSpeed: "50 MPH",
-        range: "35 mi",
+        power: "4000W",
+        maxSpeed: "45 MPH",
+        range: "30 mi",
         tire: "Off-road fat",
         price: 2299.99,
         originalPrice: 2549.99,
@@ -123,7 +123,7 @@ export const getAllScooters = query({
 
 export const getScootersByCategory = query({
   args: { wheels: v.optional(v.number()) },
-  handler: async (ctx, args) => {
+  handler: async (_ctx, args) => {
     const allScooters = [
       {
         id: "elk-rover",
@@ -162,7 +162,7 @@ export const getScootersByCategory = query({
         name: "Elk Cruiser",
         wheels: 2,
         power: "3000W",
-        maxSpeed: "45 MPH",
+        maxSpeed: "35 MPH",
         range: "30 mi",
         tire: "Normal fat",
         price: 1849.99,
@@ -225,9 +225,9 @@ export const getScootersByCategory = query({
         id: "elk-thunderbolt",
         name: "Elk ThunderBolt",
         wheels: 2,
-        power: "5000W",
-        maxSpeed: "50 MPH",
-        range: "35 mi",
+        power: "4000W",
+        maxSpeed: "45 MPH",
+        range: "30 mi",
         tire: "Off-road fat",
         price: 2299.99,
         originalPrice: 2549.99,
@@ -238,11 +238,11 @@ export const getScootersByCategory = query({
         inStock: true,
       },
     ];
-    
-    if (args.wheels) {
+
+    if (args.wheels !== undefined) {
       return allScooters.filter((s) => s.wheels === args.wheels);
     }
-    
+
     return allScooters;
   },
 });
