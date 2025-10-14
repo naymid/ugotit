@@ -59,6 +59,7 @@ export default function AccessoryPage() {
   );
 
   const currentPrice = selectedVariant?.price || accessory.variants?.[0]?.price || 0;
+  const currentImage = selectedVariant?.image || accessory.image;
 
   const handleAddToCart = () => {
     if (!selectedGroup || !selectedPower) {
@@ -108,7 +109,7 @@ export default function AccessoryPage() {
                 className="relative bg-zinc-900/50 border border-zinc-800 rounded-2xl p-8"
               >
                 <img
-                  src={accessory.image}
+                  src={currentImage}
                   alt={accessory.name}
                   className="w-full h-96 object-contain"
                 />
