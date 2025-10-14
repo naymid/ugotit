@@ -7,9 +7,10 @@ import { useNavigate } from "react-router";
 
 interface NavbarProps {
   onNavigate?: (id: string) => void;
+  onQuizOpen?: () => void;
 }
 
-export function Navbar({ onNavigate }: NavbarProps = {}) {
+export function Navbar({ onNavigate, onQuizOpen }: NavbarProps = {}) {
   const [scrolled, setScrolled] = useState(false);
   const navigate = useNavigate();
 
@@ -26,11 +27,13 @@ export function Navbar({ onNavigate }: NavbarProps = {}) {
     { label: "Two Wheels", href: "scooters?wheels=2", isRoute: true, category: 2 },
     { label: "Three Wheels", href: "scooters?wheels=3", isRoute: true, category: 3 },
     { label: "Accessories", href: "accessories" },
-    { label: "Find Your Scooter", href: "quiz" },
+    { label: "Find Your Scooter", href: "quiz", isQuiz: true },
   ];
 
-  const handleNavClick = (href: string, isRoute?: boolean) => {
-    if (isRoute) {
+  const handleNavClick = (href: string, isRoute?: boolean, isQuiz?: boolean) => {
+    if (isQuiz && onQuizOpen) {
+      onQuizOpen();
+    } else if (isRoute) {
       navigate(`/${href}`);
     } else if (onNavigate) {
       onNavigate(href);
@@ -68,7 +71,7 @@ export function Navbar({ onNavigate }: NavbarProps = {}) {
             {navItems.map((item) => (
               <button
                 key={item.label}
-                onClick={() => handleNavClick(item.href, item.isRoute)}
+                onClick={() => handleNavClick(item.href, item.isRoute, item.isQuiz)}
                 className="text-sm font-medium text-zinc-300 hover:text-amber-500 transition-colors relative group"
               >
                 {item.label}
@@ -99,7 +102,7 @@ export function Navbar({ onNavigate }: NavbarProps = {}) {
                 {navItems.map((item, idx) => (
                   <motion.button
                     key={item.label}
-                    onClick={() => handleNavClick(item.href, item.isRoute)}
+                    onClick={() => handleNavClick(item.href, item.isRoute, item.isQuiz)}
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: idx * 0.1 }}

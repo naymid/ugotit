@@ -60,7 +60,7 @@ export default function Home() {
 
   return (
     <div className="bg-black text-white overflow-x-hidden">
-      <Navbar onNavigate={scrollToSection} />
+      <Navbar onNavigate={scrollToSection} onQuizOpen={() => setQuizOpen(true)} />
       
       {/* Hero Section */}
       <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
