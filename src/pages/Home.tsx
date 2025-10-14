@@ -40,7 +40,7 @@ export default function Home() {
   const heroScale = useTransform(scrollYProgress, [0, 1], [1, 0.8]);
 
   const featuredScooters = scooters?.filter((s) =>
-    ["elk-cruiser", "elk-jubilee-x", "elk-patriot", "elk-thunderbolt"].includes(s.id)
+    ["elk-cruiser", "elk-jubilee-x", "elk-thunderbolt", "elk-patriot"].includes(s.id)
   );
 
   const scrollToSection = (id: string) => {
