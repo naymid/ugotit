@@ -22,9 +22,9 @@ export function Navbar({ onNavigate }: NavbarProps = {}) {
   }, []);
 
   const navItems = [
-    { label: "All Scooters", href: "scooters", isRoute: true },
-    { label: "Two Wheels", href: "scooters", isRoute: true },
-    { label: "Three Wheels", href: "scooters", isRoute: true },
+    { label: "All Scooters", href: "scooters", isRoute: true, category: null },
+    { label: "Two Wheels", href: "scooters?wheels=2", isRoute: true, category: 2 },
+    { label: "Three Wheels", href: "scooters?wheels=3", isRoute: true, category: 3 },
     { label: "Accessories", href: "accessories" },
     { label: "Find Your Scooter", href: "quiz" },
   ];

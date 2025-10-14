@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -15,12 +15,24 @@ import {
   ArrowRight,
   Filter,
 } from "lucide-react";
-import { useNavigate } from "react-router";
+import { useNavigate, useSearchParams } from "react-router";
 
 export default function AllScooters() {
+  const [searchParams] = useSearchParams();
   const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
   const scooters = useQuery(api.scooters.getAllScooters);
   const navigate = useNavigate();
+
+  // Set initial category from URL params
+  useEffect(() => {
+    const wheelsParam = searchParams.get("wheels");
+    if (wheelsParam) {
+      const wheels = parseInt(wheelsParam);
+      if (wheels === 2 || wheels === 3) {
+        setSelectedCategory(wheels);
+      }
+    }
+  }, [searchParams]);
 
   const displayedScooters = selectedCategory
     ? scooters?.filter((s) => s.wheels === selectedCategory)
