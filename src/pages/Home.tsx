@@ -356,7 +356,7 @@ function PerformanceSection() {
   const stats = [
     { label: "0–45 MPH Acceleration", value: 3.2, unit: "s" },
     { label: "Max Range", value: 30, unit: "miles" },
-    { label: "Motor Output", value: 6000, unit: "W" },
+    { label: "Motor Output", value: "Up to 6000", unit: "W" },
     { label: "Peak Gradeability", value: 40, unit: "%" },
     { label: "Weight Capacity", value: 330, unit: "lbs" },
     { label: "Charge Time", value: 3, unit: "h", prefix: "<" },
