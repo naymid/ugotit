@@ -40,8 +40,12 @@ export default function Home() {
   const heroScale = useTransform(scrollYProgress, [0, 1], [1, 0.8]);
 
   const featuredScooters = scooters?.filter((s) =>
-    ["elk-cruiser", "elk-jubilee-x", "elk-thunderbolt", "elk-patriot"].includes(s.id)
-  );
+    ["elk-cruiser", "elk-thunderbolt", "elk-jubilee-x", "elk-patriot"].includes(s.id)
+  ).sort((a, b) => {
+    // Sort sold out items to the end
+    if (a.inStock === b.inStock) return 0;
+    return a.inStock ? -1 : 1;
+  });
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
