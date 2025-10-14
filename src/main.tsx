@@ -9,6 +9,7 @@ import { BrowserRouter, Route, Routes, useLocation } from "react-router";
 import "./index.css";
 import Home from "./pages/Home.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import AllScooters from "./pages/AllScooters.tsx";
 import "./types/global.d.ts";
 
 const convex = new ConvexReactClient(import.meta.env.VITE_CONVEX_URL as string);
@@ -47,6 +48,7 @@ createRoot(document.getElementById("root")!).render(
           <RouteSyncer />
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/scooters" element={<AllScooters />} />
             <Route path="/auth" element={<AuthPage redirectAfterAuth="/" />}/>
             <Route path="*" element={<NotFound />} />
           </Routes>

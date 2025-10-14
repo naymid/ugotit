@@ -22,15 +22,17 @@ export function Navbar({ onNavigate }: NavbarProps = {}) {
   }, []);
 
   const navItems = [
-    { label: "All Scooters", href: "scooters" },
+    { label: "All Scooters", href: "scooters", isRoute: true },
     { label: "Two Wheels", href: "two-wheels" },
     { label: "Three Wheels", href: "three-wheels" },
     { label: "Accessories", href: "accessories" },
     { label: "Find Your Scooter", href: "quiz" },
   ];
 
-  const handleNavClick = (href: string) => {
-    if (onNavigate) {
+  const handleNavClick = (href: string, isRoute?: boolean) => {
+    if (isRoute) {
+      navigate(`/${href}`);
+    } else if (onNavigate) {
       onNavigate(href);
     } else {
       const element = document.getElementById(href);
@@ -66,7 +68,7 @@ export function Navbar({ onNavigate }: NavbarProps = {}) {
             {navItems.map((item) => (
               <button
                 key={item.label}
-                onClick={() => handleNavClick(item.href)}
+                onClick={() => handleNavClick(item.href, item.isRoute)}
                 className="text-sm font-medium text-zinc-300 hover:text-amber-500 transition-colors relative group"
               >
                 {item.label}
@@ -78,7 +80,7 @@ export function Navbar({ onNavigate }: NavbarProps = {}) {
           {/* CTA Button */}
           <div className="hidden lg:block">
             <Button 
-              onClick={() => handleNavClick("scooters")}
+              onClick={() => navigate("/scooters")}
               className="bg-amber-500 hover:bg-amber-600 text-black font-bold px-6 rounded-full"
             >
               Shop Now
@@ -97,7 +99,7 @@ export function Navbar({ onNavigate }: NavbarProps = {}) {
                 {navItems.map((item, idx) => (
                   <motion.button
                     key={item.label}
-                    onClick={() => handleNavClick(item.href)}
+                    onClick={() => handleNavClick(item.href, item.isRoute)}
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: idx * 0.1 }}
@@ -107,7 +109,7 @@ export function Navbar({ onNavigate }: NavbarProps = {}) {
                   </motion.button>
                 ))}
                 <Button 
-                  onClick={() => handleNavClick("scooters")}
+                  onClick={() => navigate("/scooters")}
                   className="bg-amber-500 hover:bg-amber-600 text-black font-bold mt-4"
                 >
                   Shop Now
