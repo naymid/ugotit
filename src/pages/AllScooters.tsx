@@ -23,6 +23,7 @@ export default function AllScooters() {
   const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
   const [quizOpen, setQuizOpen] = useState(false);
   const scooters = useQuery(api.scooters.getAllScooters);
+  const accessories = useQuery(api.accessories.getAllAccessories);
   const navigate = useNavigate();
 
   // Set initial category from URL params
@@ -39,6 +40,8 @@ export default function AllScooters() {
   const displayedScooters = selectedCategory
     ? scooters?.filter((s) => s.wheels === selectedCategory)
     : scooters;
+
+  const displayedAccessories = accessories || [];
 
   return (
     <div className="bg-black text-white min-h-screen overflow-x-hidden">
@@ -159,6 +162,31 @@ export default function AllScooters() {
           )}
         </div>
       </section>
+
+      {/* Accessories Section */}
+      {displayedAccessories.length > 0 && (
+        <section className="py-16 bg-black">
+          <div className="container mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tighter mb-4">
+                ACCESSORIES
+              </h2>
+              <p className="text-xl text-zinc-400">Enhance your ride</p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
+              {displayedAccessories.map((accessory, idx) => (
+                <AccessoryCard key={accessory.id} accessory={accessory} index={idx} />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* CTA Section */}
       <section className="py-24 relative overflow-hidden">
@@ -286,6 +314,74 @@ function ScooterCard({ scooter, index }: { scooter: any; index: number }) {
             className="w-full bg-amber-500 hover:bg-amber-600 text-black font-bold"
             disabled={!scooter.inStock}
             onClick={() => navigate(`/scooter/${scooter.id}`)}
+          >
+            View Details
+            <ArrowRight className="ml-2 h-4 w-4" />
+          </Button>
+        </div>
+      </Card>
+    </motion.div>
+  );
+}
+
+function AccessoryCard({ accessory, index }: { accessory: any; index: number }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+  const navigate = useNavigate();
+
+  const priceRange = accessory.variants
+    ? `$${Math.min(...accessory.variants.map((v: any) => v.price)).toFixed(2)} - $${Math.max(...accessory.variants.map((v: any) => v.price)).toFixed(2)}`
+    : "$0.00";
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 50 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ delay: index * 0.1, duration: 0.6 }}
+      whileHover={{ y: -10 }}
+      className="group relative"
+    >
+      <Card className="bg-zinc-900/50 border-zinc-800 overflow-hidden hover:border-amber-500/50 transition-all duration-300">
+        <div className="p-6">
+          <div className="relative mb-6">
+            <img
+              src={accessory.image}
+              alt={accessory.name}
+              className="w-full h-48 object-contain group-hover:scale-110 transition-transform duration-500"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-amber-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+          </div>
+
+          <div className="flex flex-wrap gap-2 mb-4">
+            {accessory.badges.map((badge: string) => (
+              <Badge
+                key={badge}
+                className="bg-amber-500/20 text-amber-500 border-amber-500/30"
+              >
+                {badge}
+              </Badge>
+            ))}
+          </div>
+
+          <h3 className="text-2xl font-bold mb-4 group-hover:text-amber-500 transition-colors">
+            {accessory.name}
+          </h3>
+
+          <div className="flex items-center gap-2 mb-6">
+            <Star className="h-4 w-4 text-amber-500 fill-amber-500" />
+            <span className="text-zinc-400 text-sm">{accessory.rating} ({accessory.reviews} reviews)</span>
+          </div>
+
+          <div className="flex items-center justify-between mb-4">
+            <span className="text-xl font-bold text-amber-500">
+              {priceRange}
+            </span>
+          </div>
+
+          <Button
+            className="w-full bg-amber-500 hover:bg-amber-600 text-black font-bold"
+            onClick={() => navigate(`/accessory/${accessory.id}`)}
           >
             View Details
             <ArrowRight className="ml-2 h-4 w-4" />
