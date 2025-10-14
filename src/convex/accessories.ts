@@ -11,7 +11,7 @@ export const getAllAccessories = query({
         type: "accessory",
         category: "battery",
         badges: ["Accessory", "Extended Range"],
-        image: "https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=800",
+        image: "https://harmless-tapir-303.convex.cloud/api/storage/a49e5edf-07cd-4477-8cbb-b2d21a842f05",
         rating: 4.9,
         reviews: 89,
         inStock: true,
