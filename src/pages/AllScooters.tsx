@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Navbar } from "@/components/Navbar";
+import { ScooterQuiz } from "@/components/ScooterQuiz";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import {
@@ -20,6 +21,7 @@ import { useNavigate, useSearchParams } from "react-router";
 export default function AllScooters() {
   const [searchParams] = useSearchParams();
   const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
+  const [quizOpen, setQuizOpen] = useState(false);
   const scooters = useQuery(api.scooters.getAllScooters);
   const navigate = useNavigate();
 
@@ -40,7 +42,7 @@ export default function AllScooters() {
 
   return (
     <div className="bg-black text-white min-h-screen overflow-x-hidden">
-      <Navbar />
+      <Navbar onQuizOpen={() => setQuizOpen(true)} />
 
       {/* Hero Section */}
       <section className="relative pt-32 pb-16 overflow-hidden">
@@ -193,6 +195,9 @@ export default function AllScooters() {
 
       {/* Footer */}
       <Footer />
+
+      {/* Quiz Modal */}
+      <ScooterQuiz open={quizOpen} onClose={() => setQuizOpen(false)} />
     </div>
   );
 }
