@@ -165,7 +165,7 @@ export default function AllScooters() {
 
       {/* Accessories Section */}
       {displayedAccessories.length > 0 && (
-        <section className="py-16 bg-black">
+        <section id="accessories" className="py-16 bg-black">
           <div className="container mx-auto px-4">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
