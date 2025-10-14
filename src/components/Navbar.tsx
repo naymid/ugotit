@@ -26,15 +26,23 @@ export function Navbar({ onNavigate, onQuizOpen }: NavbarProps = {}) {
     { label: "All Scooters", href: "scooters", isRoute: true, category: null },
     { label: "Two Wheels", href: "scooters?wheels=2", isRoute: true, category: 2 },
     { label: "Three Wheels", href: "scooters?wheels=3", isRoute: true, category: 3 },
-    { label: "Accessories", href: "accessories" },
+    { label: "Accessories", href: "scooters", isRoute: true, scrollTo: "accessories" },
     { label: "Find Your Scooter", href: "quiz", isQuiz: true },
   ];
 
-  const handleNavClick = (href: string, isRoute?: boolean, isQuiz?: boolean) => {
+  const handleNavClick = (href: string, isRoute?: boolean, isQuiz?: boolean, scrollTo?: string) => {
     if (isQuiz && onQuizOpen) {
       onQuizOpen();
     } else if (isRoute) {
       navigate(`/${href}`);
+      if (scrollTo) {
+        setTimeout(() => {
+          const element = document.getElementById(scrollTo);
+          if (element) {
+            element.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        }, 100);
+      }
     } else if (onNavigate) {
       onNavigate(href);
     } else {
@@ -71,7 +79,7 @@ export function Navbar({ onNavigate, onQuizOpen }: NavbarProps = {}) {
             {navItems.map((item) => (
               <button
                 key={item.label}
-                onClick={() => handleNavClick(item.href, item.isRoute, item.isQuiz)}
+                onClick={() => handleNavClick(item.href, item.isRoute, item.isQuiz, (item as any).scrollTo)}
                 className="text-sm font-medium text-zinc-300 hover:text-amber-500 transition-colors relative group"
               >
                 {item.label}
@@ -102,7 +110,7 @@ export function Navbar({ onNavigate, onQuizOpen }: NavbarProps = {}) {
                 {navItems.map((item, idx) => (
                   <motion.button
                     key={item.label}
-                    onClick={() => handleNavClick(item.href, item.isRoute, item.isQuiz)}
+                    onClick={() => handleNavClick(item.href, item.isRoute, item.isQuiz, (item as any).scrollTo)}
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: idx * 0.1 }}
