@@ -19,7 +19,7 @@ export const getAllScooters = query({
         image: "https://harmless-tapir-303.convex.cloud/api/storage/7effa899-7bab-4f0c-9bc2-ad79713126bd",
         rating: 4.8,
         reviews: 127,
-        inStock: true,
+        inStock: false,
       },
       {
         id: "elk-velocity",
