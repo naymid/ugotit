@@ -76,6 +76,12 @@ export const getAllScooters = query({
         rating: 4.9,
         reviews: 178,
         inStock: true,
+        additionalImages: [
+          "https://harmless-tapir-303.convex.cloud/api/storage/a3ccdbb2-10fc-4f54-8ab7-74296104bbfa",
+          "https://harmless-tapir-303.convex.cloud/api/storage/b572b363-253c-4de4-aef7-09202e1db986",
+          "https://harmless-tapir-303.convex.cloud/api/storage/9648f585-7a15-41c0-a980-075080ac708e",
+          "https://harmless-tapir-303.convex.cloud/api/storage/46012c9e-a8e7-41db-abe2-8f2ef79faa44",
+        ],
       },
       {
         id: "elk-patriot",
