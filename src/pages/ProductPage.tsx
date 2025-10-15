@@ -568,7 +568,7 @@ function CustomerPhotosSection({ scooterId }: { scooterId: string }) {
         caption: "Takes me deep into the wilderness with ease"
       },
       {
-        image: "https://harmless-tapir-303.convex.cloud/api/storage/3ef9de33-b044-4921-8124-ffdbb3e0c1ff",
+        image: "https://harmless-tapir-303.convex.cloud/api/storage/3cd78cc9-3088-4112-9803-698465e200d5",
         author: "Amanda K.",
         location: "Indianapolis, IN",
         caption: "Love taking it out for weekend adventures"
