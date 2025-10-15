@@ -41,7 +41,7 @@ export default function Home() {
   const heroScale = useTransform(scrollYProgress, [0, 1], [1, 0.8]);
 
   const featuredScooters = scooters?.filter((s) =>
-    ["elk-cruiser", "elk-thunderbolt", "elk-jubilee-x", "elk-patriot"].includes(s.id)
+    ["elk-cruiser", "elk-thunderbolt", "elk-jubilee-x", "elk-velocity"].includes(s.id)
   ).sort((a, b) => {
     // Sort sold out items to the end
     if (a.inStock === b.inStock) return 0;
