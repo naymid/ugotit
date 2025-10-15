@@ -417,10 +417,18 @@ function FeaturesSection({ scooter }: { scooter: any }) {
 
 function ImagePlaceholdersSection() {
   const placeholders = [
+    { 
+      title: "Front Wheel & Brake", 
+      description: "Disc brake system detail",
+      image: "https://harmless-tapir-303.convex.cloud/api/storage/bffa5a11-66da-4121-a27a-f0fbcf7659ae"
+    },
+    { 
+      title: "Rear Wheel & Suspension", 
+      description: "Brake pad close-up",
+      image: "https://harmless-tapir-303.convex.cloud/api/storage/afd3f918-2e53-4d73-bf24-61edc025c3be"
+    },
     { title: "Action Shot", description: "Rider in motion" },
-    { title: "Detail View", description: "Close-up features" },
     { title: "Lifestyle", description: "Real-world usage" },
-    { title: "Terrain Test", description: "Off-road capability" },
   ];
 
   return (
@@ -448,15 +456,33 @@ function ImagePlaceholdersSection() {
               transition={{ delay: idx * 0.1 }}
               className="relative bg-zinc-900/50 border border-zinc-800 rounded-2xl overflow-hidden h-80 group hover:border-amber-500/50 transition-all"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center">
-                <div className="text-center">
-                  <Mountain className="h-16 w-16 text-amber-500/30 mx-auto mb-4" />
-                  <h3 className="text-2xl font-bold text-zinc-600 mb-2">
-                    {placeholder.title}
-                  </h3>
-                  <p className="text-zinc-500">{placeholder.description}</p>
+              {(placeholder as any).image ? (
+                <>
+                  <img
+                    src={(placeholder as any).image}
+                    alt={placeholder.title}
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-end">
+                    <div className="p-6 w-full">
+                      <h3 className="text-2xl font-bold text-white mb-2">
+                        {placeholder.title}
+                      </h3>
+                      <p className="text-zinc-300">{placeholder.description}</p>
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <div className="absolute inset-0 bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center">
+                  <div className="text-center">
+                    <Mountain className="h-16 w-16 text-amber-500/30 mx-auto mb-4" />
+                    <h3 className="text-2xl font-bold text-zinc-600 mb-2">
+                      {placeholder.title}
+                    </h3>
+                    <p className="text-zinc-500">{placeholder.description}</p>
+                  </div>
                 </div>
-              </div>
+              )}
             </motion.div>
           ))}
         </div>
