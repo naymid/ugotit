@@ -506,17 +506,17 @@ function CustomerPhotosSection() {
       image: "https://harmless-tapir-303.convex.cloud/api/storage/ec62f0aa-0684-4992-89c2-51fd0fb9f3ef",
       author: "Marcus T.",
       location: "Colorado Rockies",
-      caption: "Took it up to 11,000 feet - handles mountain trails like a dream!"
+      caption: "Took it up to the mountain trails - handles like a dream!"
     },
     {
       image: "https://harmless-tapir-303.convex.cloud/api/storage/ccc61561-572a-46a8-a02d-4921aff44d16",
-      author: "David K.",
+      author: "Sarah L.",
       location: "Portland, OR",
       caption: "Perfect for my daily commute and weekend adventures"
     },
     {
       image: "https://harmless-tapir-303.convex.cloud/api/storage/6ade2d48-0901-4239-a99a-61e49723070d",
-      author: "Jake M.",
+      author: "David K.",
       location: "Malibu, CA",
       caption: "Beach cruising has never been this fun"
     },
@@ -524,7 +524,7 @@ function CustomerPhotosSection() {
       image: "https://harmless-tapir-303.convex.cloud/api/storage/0088d438-14e9-4fa5-b2f4-2084e6bd8c17",
       author: "Ryan S.",
       location: "Dolomites, Italy",
-      caption: "Conquered the Alps with this beast - absolutely incredible"
+      caption: "Exploring the mountain roads - this thing is a beast"
     },
   ];
 
