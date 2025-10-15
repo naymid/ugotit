@@ -557,8 +557,8 @@ function CustomerPhotosSection() {
                 <img
                   src={photo.image}
                   alt={`Customer photo by ${photo.author}`}
-                  className={`w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ${
-                    idx === 1 ? "scale-x-[-1]" : ""
+                  className={`w-full h-full object-cover transition-transform duration-500 ${
+                    idx === 1 ? "scale-x-[-1]" : "group-hover:scale-110"
                   }`}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
