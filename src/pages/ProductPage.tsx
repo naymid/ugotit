@@ -439,6 +439,11 @@ function ImagePlaceholdersSection({ scooterId }: { scooterId: string }) {
         description: "Advanced digital dashboard puts all critical ride data at your fingertips—speed, battery, distance, and riding mode in crystal-clear detail",
         image: "https://harmless-tapir-303.convex.cloud/api/storage/572199bb-b171-4448-9fc9-43ed5b48ae6b"
       },
+      { 
+        title: "Premium LED Lighting System", 
+        description: "High-intensity LED headlight with integrated turn signals ensures maximum visibility and safety during day and night rides",
+        image: "https://harmless-tapir-303.convex.cloud/api/storage/5b4f6cca-08b9-48a2-8a77-55a06980967d"
+      },
     ],
     "elk-jubilee-x": [
       { 
