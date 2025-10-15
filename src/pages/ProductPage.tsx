@@ -439,6 +439,11 @@ function ImagePlaceholdersSection({ scooterId }: { scooterId: string }) {
         description: "Aggressive tread pattern and reinforced sidewalls conquer mud, gravel, and rocky trails with unstoppable grip",
         image: "https://harmless-tapir-303.convex.cloud/api/storage/426d681f-1fad-4bda-a4d3-a00d3af19d3e"
       },
+      { 
+        title: "Adventure-Ready Storage & Suspension", 
+        description: "Premium rear storage compartment paired with heavy-duty suspension system—engineered for long-distance comfort and cargo capacity",
+        image: "https://harmless-tapir-303.convex.cloud/api/storage/de921bb1-d43e-4458-938d-383e4d0ebb46"
+      },
     ],
   };
 
