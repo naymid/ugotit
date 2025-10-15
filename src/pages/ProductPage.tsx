@@ -509,16 +509,16 @@ function CustomerPhotosSection() {
       caption: "Took it up to the mountain trails - handles like a dream!"
     },
     {
-      image: "https://harmless-tapir-303.convex.cloud/api/storage/ccc61561-572a-46a8-a02d-4921aff44d16",
-      author: "Sarah L.",
-      location: "Portland, OR",
-      caption: "Perfect for my daily commute and weekend adventures"
-    },
-    {
       image: "https://harmless-tapir-303.convex.cloud/api/storage/6ade2d48-0901-4239-a99a-61e49723070d",
       author: "David K.",
       location: "Malibu, CA",
       caption: "Beach cruising has never been this fun"
+    },
+    {
+      image: "https://harmless-tapir-303.convex.cloud/api/storage/ccc61561-572a-46a8-a02d-4921aff44d16",
+      author: "Sarah L.",
+      location: "Portland, OR",
+      caption: "Perfect for my daily commute and weekend adventures"
     },
     {
       image: "https://harmless-tapir-303.convex.cloud/api/storage/0088d438-14e9-4fa5-b2f4-2084e6bd8c17",
@@ -557,7 +557,9 @@ function CustomerPhotosSection() {
                 <img
                   src={photo.image}
                   alt={`Customer photo by ${photo.author}`}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  className={`w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ${
+                    idx === 1 ? "scale-x-[-1]" : ""
+                  }`}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               </div>
