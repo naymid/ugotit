@@ -503,25 +503,25 @@ function ImagePlaceholdersSection() {
 function CustomerPhotosSection() {
   const customerPhotos = [
     {
-      image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800",
+      image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=1067&fit=crop",
       author: "Mike R.",
       location: "Colorado",
       caption: "Perfect for mountain trails!"
     },
     {
-      image: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=800",
+      image: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=600&h=1067&fit=crop",
       author: "Sarah L.",
       location: "California",
       caption: "Love the power and range"
     },
     {
-      image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800",
+      image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&h=1067&fit=crop",
       author: "James K.",
       location: "Texas",
       caption: "Best investment I've made"
     },
     {
-      image: "https://images.unsplash.com/photo-1609137144813-7d9921338f24?w=800",
+      image: "https://images.unsplash.com/photo-1609137144813-7d9921338f24?w=600&h=1067&fit=crop",
       author: "Emily T.",
       location: "Oregon",
       caption: "Handles any terrain with ease"
@@ -538,7 +538,7 @@ function CustomerPhotosSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold tracking-tighter mb-4">
-            CUSTOMER PHOTOS
+            REAL RIDERS, REAL ADVENTURES
           </h2>
           <p className="text-xl text-zinc-400">See how riders are enjoying their Elk scooters</p>
         </motion.div>
@@ -553,7 +553,7 @@ function CustomerPhotosSection() {
               transition={{ delay: idx * 0.1 }}
               className="group relative bg-zinc-900/50 border border-zinc-800 rounded-2xl overflow-hidden hover:border-amber-500/50 transition-all cursor-pointer"
             >
-              <div className="aspect-square relative overflow-hidden">
+              <div className="aspect-[9/16] relative overflow-hidden">
                 <img
                   src={photo.image}
                   alt={`Customer photo by ${photo.author}`}
