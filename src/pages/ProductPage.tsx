@@ -418,17 +418,23 @@ function FeaturesSection({ scooter }: { scooter: any }) {
 function ImagePlaceholdersSection() {
   const placeholders = [
     { 
-      title: "Rear Wheel & Suspension", 
-      description: "Advanced suspension system with precision brake caliper",
+      title: "Engineered Rear Suspension", 
+      description: "Premium shock absorption meets precision braking—built to handle any terrain with confidence",
       image: "https://harmless-tapir-303.convex.cloud/api/storage/afd3f918-2e53-4d73-bf24-61edc025c3be"
     },
     { 
-      title: "Front Wheel & Brake", 
-      description: "High-performance disc brake with red caliper detail",
+      title: "Performance Braking System", 
+      description: "Race-grade disc brakes with signature red calipers deliver instant stopping power when you need it most",
       image: "https://harmless-tapir-303.convex.cloud/api/storage/bffa5a11-66da-4121-a27a-f0fbcf7659ae"
     },
-    { title: "Action Shot", description: "Rider in motion" },
-    { title: "Lifestyle", description: "Real-world usage" },
+    { 
+      title: "Built for Adventure", 
+      description: "Experience the thrill of off-road freedom" 
+    },
+    { 
+      title: "Your Daily Ride, Elevated", 
+      description: "Transform every commute into an adventure" 
+    },
   ];
 
   return (
