@@ -418,14 +418,14 @@ function FeaturesSection({ scooter }: { scooter: any }) {
 function ImagePlaceholdersSection() {
   const placeholders = [
     { 
-      title: "Front Wheel & Brake", 
-      description: "Disc brake system detail",
-      image: "https://harmless-tapir-303.convex.cloud/api/storage/bffa5a11-66da-4121-a27a-f0fbcf7659ae"
+      title: "Rear Wheel & Suspension", 
+      description: "Advanced suspension system with precision brake caliper",
+      image: "https://harmless-tapir-303.convex.cloud/api/storage/afd3f918-2e53-4d73-bf24-61edc025c3be"
     },
     { 
-      title: "Rear Wheel & Suspension", 
-      description: "Brake pad close-up",
-      image: "https://harmless-tapir-303.convex.cloud/api/storage/afd3f918-2e53-4d73-bf24-61edc025c3be"
+      title: "Front Wheel & Brake", 
+      description: "High-performance disc brake with red caliper detail",
+      image: "https://harmless-tapir-303.convex.cloud/api/storage/bffa5a11-66da-4121-a27a-f0fbcf7659ae"
     },
     { title: "Action Shot", description: "Rider in motion" },
     { title: "Lifestyle", description: "Real-world usage" },
