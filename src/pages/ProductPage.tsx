@@ -523,7 +523,7 @@ function CustomerPhotosSection() {
     {
       image: "https://harmless-tapir-303.convex.cloud/api/storage/0088d438-14e9-4fa5-b2f4-2084e6bd8c17",
       author: "Ryan S.",
-      location: "Dolomites, Italy",
+      location: "Rocky Mountains, CO",
       caption: "Exploring the mountain roads - this thing is a beast"
     },
   ];
