@@ -60,13 +60,11 @@ export default function ProductPage() {
     });
   };
 
-  // Placeholder images - will be replaced with actual product images
-  const productImages = [
-    scooter.image,
-    scooter.image, // Placeholder for side view
-    scooter.image, // Placeholder for detail view
-    scooter.image, // Placeholder for action shot
-  ];
+  // Product images - main image plus additional images if available (handle union typing)
+  const gallery: string[] | undefined = (scooter as any).additionalImages;
+  const productImages = Array.isArray(gallery) && gallery.length > 0
+    ? [scooter.image, ...gallery]
+    : [scooter.image, scooter.image, scooter.image, scooter.image];
 
   return (
     <div className="bg-black text-white min-h-screen overflow-x-hidden">
