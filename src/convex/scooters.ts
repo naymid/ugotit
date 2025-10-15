@@ -57,6 +57,8 @@ export const getAllScooters = query({
           "https://harmless-tapir-303.convex.cloud/api/storage/366b910b-6378-451d-b8c3-e265f674e125",
           "https://harmless-tapir-303.convex.cloud/api/storage/645bb1d2-d778-412b-ac89-9f5776d4af3c",
           "https://harmless-tapir-303.convex.cloud/api/storage/5ff8061b-c078-47ac-9ab2-3dca4454f987",
+          "https://harmless-tapir-303.convex.cloud/api/storage/bffa5a11-66da-4121-a27a-f0fbcf7659ae",
+          "https://harmless-tapir-303.convex.cloud/api/storage/afd3f918-2e53-4d73-bf24-61edc025c3be",
         ],
       },
       {
