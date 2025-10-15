@@ -433,6 +433,13 @@ function ImagePlaceholdersSection({ scooterId }: { scooterId: string }) {
         image: "https://harmless-tapir-303.convex.cloud/api/storage/bffa5a11-66da-4121-a27a-f0fbcf7659ae"
       },
     ],
+    "elk-thunderbolt": [
+      { 
+        title: "Smart LCD Display", 
+        description: "Advanced digital dashboard puts all critical ride data at your fingertips—speed, battery, distance, and riding mode in crystal-clear detail",
+        image: "https://harmless-tapir-303.convex.cloud/api/storage/572199bb-b171-4448-9fc9-43ed5b48ae6b"
+      },
+    ],
     "elk-jubilee-x": [
       { 
         title: "Off-Road Domination", 
