@@ -548,6 +548,32 @@ function CustomerPhotosSection({ scooterId }: { scooterId: string }) {
         caption: "Exploring the mountain roads - this thing is a beast"
       },
     ],
+    "elk-thunderbolt": [
+      {
+        image: "https://harmless-tapir-303.convex.cloud/api/storage/3bfa51b9-8982-4265-b90f-4ea6153ca3c1",
+        author: "Jake M.",
+        location: "Outer Banks, NC",
+        caption: "The power on sand is incredible - 45 MPH feels amazing"
+      },
+      {
+        image: "https://harmless-tapir-303.convex.cloud/api/storage/cccaa0e3-7b71-4043-a85f-d593986db521",
+        author: "Tyler B.",
+        location: "Miami Beach, FL",
+        caption: "Best beach cruiser I've ever owned"
+      },
+      {
+        image: "https://harmless-tapir-303.convex.cloud/api/storage/ec62f0aa-0684-4992-89c2-51fd0fb9f3ef",
+        author: "Chris P.",
+        location: "Lake Tahoe, CA",
+        caption: "Takes on mountain trails like nothing else"
+      },
+      {
+        image: "https://harmless-tapir-303.convex.cloud/api/storage/0088d438-14e9-4fa5-b2f4-2084e6bd8c17",
+        author: "Brandon K.",
+        location: "Sedona, AZ",
+        caption: "The ThunderBolt lives up to its name - pure power"
+      },
+    ],
     "elk-jubilee-x": [
       {
         image: "https://harmless-tapir-303.convex.cloud/api/storage/7c0b8c6b-4db0-4c3d-8a20-fe0d44164310",
