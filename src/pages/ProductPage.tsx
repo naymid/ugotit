@@ -550,28 +550,28 @@ function CustomerPhotosSection({ scooterId }: { scooterId: string }) {
     ],
     "elk-jubilee-x": [
       {
-        image: "https://harmless-tapir-303.convex.cloud/api/storage/ec62f0aa-0684-4992-89c2-51fd0fb9f3ef",
-        author: "Jake M.",
-        location: "Moab, UT",
-        caption: "Conquered the toughest trails with ease!"
+        image: "https://harmless-tapir-303.convex.cloud/api/storage/7c0b8c6b-4db0-4c3d-8a20-fe0d44164310",
+        author: "Mike T.",
+        location: "Outer Banks, NC",
+        caption: "Beach rides are incredible with this three-wheeler"
       },
       {
-        image: "https://harmless-tapir-303.convex.cloud/api/storage/0088d438-14e9-4fa5-b2f4-2084e6bd8c17",
-        author: "Alex P.",
-        location: "Sedona, AZ",
-        caption: "Off-road beast - nothing stops this machine"
+        image: "https://harmless-tapir-303.convex.cloud/api/storage/3058cd3d-dd96-45fe-a09f-4581845d8149",
+        author: "Jennifer L.",
+        location: "Dallas, TX",
+        caption: "Perfect for neighborhood cruising and errands"
       },
       {
-        image: "https://harmless-tapir-303.convex.cloud/api/storage/ccc61561-572a-46a8-a02d-4921aff44d16",
-        author: "Chris R.",
-        location: "Big Sur, CA",
-        caption: "Three wheels of pure adventure"
+        image: "https://harmless-tapir-303.convex.cloud/api/storage/d8256840-c0f7-455b-b989-70243d512e56",
+        author: "Carlos R.",
+        location: "Montana Backcountry",
+        caption: "Takes me deep into the wilderness with ease"
       },
       {
-        image: "https://harmless-tapir-303.convex.cloud/api/storage/6ade2d48-0901-4239-a99a-61e49723070d",
-        author: "Taylor B.",
-        location: "Austin, TX",
-        caption: "Storage space is a game-changer for long trips"
+        image: "https://harmless-tapir-303.convex.cloud/api/storage/3ef9de33-b044-4921-8124-ffdbb3e0c1ff",
+        author: "Amanda K.",
+        location: "Indianapolis, IN",
+        caption: "Love taking it out for weekend adventures"
       },
     ],
   };
