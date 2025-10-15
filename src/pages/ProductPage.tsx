@@ -431,12 +431,13 @@ function ImagePlaceholdersSection() {
       image: "https://harmless-tapir-303.convex.cloud/api/storage/bffa5a11-66da-4121-a27a-f0fbcf7659ae"
     },
     { 
-      title: "Built for Adventure", 
-      description: "Experience the thrill of off-road freedom" 
+      title: "Off-Road Domination", 
+      description: "Aggressive tread pattern and reinforced sidewalls conquer mud, gravel, and rocky trails with unstoppable grip",
+      image: "https://harmless-tapir-303.convex.cloud/api/storage/426d681f-1fad-4bda-a4d3-a00d3af19d3e"
     },
     { 
-      title: "Your Daily Ride, Elevated", 
-      description: "Transform every commute into an adventure" 
+      title: "Built for Adventure", 
+      description: "Experience the thrill of off-road freedom" 
     },
   ];
 
