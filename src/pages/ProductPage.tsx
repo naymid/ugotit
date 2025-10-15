@@ -277,7 +277,7 @@ export default function ProductPage() {
       <FeaturesSection scooter={scooter} />
 
       {/* Image Placeholders Section */}
-      <ImagePlaceholdersSection />
+      <ImagePlaceholdersSection scooterId={scooter.id} />
 
       {/* Customer Photos Section */}
       <CustomerPhotosSection />
@@ -418,26 +418,39 @@ function FeaturesSection({ scooter }: { scooter: any }) {
   );
 }
 
-function ImagePlaceholdersSection() {
-  const placeholders = [
-    { 
-      title: "Precision Engineered Suspension", 
-      description: "Premium shock absorption meets precision braking—built to handle any terrain with confidence",
-      image: "https://harmless-tapir-303.convex.cloud/api/storage/afd3f918-2e53-4d73-bf24-61edc025c3be"
-    },
-    { 
-      title: "Performance Braking System", 
-      description: "Race-grade disc brakes with signature red calipers deliver instant stopping power when you need it most",
-      image: "https://harmless-tapir-303.convex.cloud/api/storage/bffa5a11-66da-4121-a27a-f0fbcf7659ae"
-    },
-    { 
-      title: "Off-Road Domination", 
-      description: "Aggressive tread pattern and reinforced sidewalls conquer mud, gravel, and rocky trails with unstoppable grip",
-      image: "https://harmless-tapir-303.convex.cloud/api/storage/426d681f-1fad-4bda-a4d3-a00d3af19d3e"
-    },
+function ImagePlaceholdersSection({ scooterId }: { scooterId: string }) {
+  // Define product-specific content
+  const productContent: Record<string, Array<{ title: string; description: string; image?: string }>> = {
+    "elk-cruiser": [
+      { 
+        title: "Precision Engineered Suspension", 
+        description: "Premium shock absorption meets precision braking—built to handle any terrain with confidence",
+        image: "https://harmless-tapir-303.convex.cloud/api/storage/afd3f918-2e53-4d73-bf24-61edc025c3be"
+      },
+      { 
+        title: "Engineered Braking Power", 
+        description: "Race-grade disc brakes with signature red calipers deliver instant stopping power when you need it most",
+        image: "https://harmless-tapir-303.convex.cloud/api/storage/bffa5a11-66da-4121-a27a-f0fbcf7659ae"
+      },
+    ],
+    "elk-jubilee-x": [
+      { 
+        title: "Off-Road Domination", 
+        description: "Aggressive tread pattern and reinforced sidewalls conquer mud, gravel, and rocky trails with unstoppable grip",
+        image: "https://harmless-tapir-303.convex.cloud/api/storage/426d681f-1fad-4bda-a4d3-a00d3af19d3e"
+      },
+    ],
+  };
+
+  // Get content for current product or use default
+  const placeholders = productContent[scooterId] || [
     { 
       title: "Built for Adventure", 
       description: "Experience the thrill of off-road freedom" 
+    },
+    { 
+      title: "Coming Soon", 
+      description: "More action shots coming soon" 
     },
   ];
 
