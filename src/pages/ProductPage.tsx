@@ -503,28 +503,28 @@ function ImagePlaceholdersSection() {
 function CustomerPhotosSection() {
   const customerPhotos = [
     {
-      image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=1067&fit=crop",
-      author: "Mike R.",
-      location: "Colorado",
-      caption: "Perfect for mountain trails!"
+      image: "https://harmless-tapir-303.convex.cloud/api/storage/ec62f0aa-0684-4992-89c2-51fd0fb9f3ef",
+      author: "Marcus T.",
+      location: "Colorado Rockies",
+      caption: "Took it up to 11,000 feet - handles mountain trails like a dream!"
     },
     {
-      image: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=600&h=1067&fit=crop",
-      author: "Sarah L.",
-      location: "California",
-      caption: "Love the power and range"
+      image: "https://harmless-tapir-303.convex.cloud/api/storage/ccc61561-572a-46a8-a02d-4921aff44d16",
+      author: "David K.",
+      location: "Portland, OR",
+      caption: "Perfect for my daily commute and weekend adventures"
     },
     {
-      image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&h=1067&fit=crop",
-      author: "James K.",
-      location: "Texas",
-      caption: "Best investment I've made"
+      image: "https://harmless-tapir-303.convex.cloud/api/storage/6ade2d48-0901-4239-a99a-61e49723070d",
+      author: "Jake M.",
+      location: "Malibu, CA",
+      caption: "Beach cruising has never been this fun"
     },
     {
-      image: "https://images.unsplash.com/photo-1609137144813-7d9921338f24?w=600&h=1067&fit=crop",
-      author: "Emily T.",
-      location: "Oregon",
-      caption: "Handles any terrain with ease"
+      image: "https://harmless-tapir-303.convex.cloud/api/storage/0088d438-14e9-4fa5-b2f4-2084e6bd8c17",
+      author: "Ryan S.",
+      location: "Dolomites, Italy",
+      caption: "Conquered the Alps with this beast - absolutely incredible"
     },
   ];
 
