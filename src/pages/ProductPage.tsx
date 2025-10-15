@@ -665,13 +665,7 @@ function CustomerPhotosSection({ scooterId }: { scooterId: string }) {
           viewport={{ once: true }}
           className="text-center mt-12"
         >
-          <p className="text-zinc-400 mb-4">Share your adventure with #ElkScooters</p>
-          <Button
-            variant="outline"
-            className="border-amber-500/30 text-amber-500 hover:bg-amber-500/10"
-          >
-            Upload Your Photo
-          </Button>
+          <p className="text-zinc-400">Share your adventure with #ElkScooters</p>
         </motion.div>
       </div>
     </section>
