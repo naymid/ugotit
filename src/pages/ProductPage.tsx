@@ -213,7 +213,7 @@ export default function ProductPage() {
                   <div className="flex items-center gap-3">
                     <Battery className="h-8 w-8 text-amber-500" />
                     <div>
-                      <p className="text-zinc-400 text-sm">Range</p>
+                      <p className="text-zinc-400 text-sm">Max Range</p>
                       <p className="text-xl font-bold">{scooter.range}</p>
                     </div>
                   </div>

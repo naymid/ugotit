@@ -314,7 +314,7 @@ function ScooterCard({ scooter, index, onViewDetails }: { scooter: any; index: n
             </div>
             <div className="flex items-center gap-2">
               <Battery className="h-4 w-4 text-amber-500" />
-              <span className="text-zinc-400">{scooter.range}</span>
+              <span className="text-zinc-400">Max {scooter.range}</span>
             </div>
             <div className="flex items-center gap-2">
               <Star className="h-4 w-4 text-amber-500 fill-amber-500" />
