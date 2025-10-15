@@ -301,7 +301,7 @@ function DetailedSpecs({ scooter }: { scooter: any }) {
   const specs = [
     { label: "Motor Power", value: scooter.power },
     { label: "Top Speed", value: scooter.maxSpeed },
-    { label: "Range", value: scooter.range },
+    { label: "Max Range", value: scooter.range },
     { label: "Tire Type", value: scooter.tire },
     { label: "Wheel Configuration", value: `${scooter.wheels} Wheels` },
     { label: "Weight Capacity", value: "330 lbs" },
