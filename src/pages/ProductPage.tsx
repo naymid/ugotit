@@ -418,7 +418,7 @@ function FeaturesSection({ scooter }: { scooter: any }) {
 function ImagePlaceholdersSection() {
   const placeholders = [
     { 
-      title: "Engineered Rear Suspension", 
+      title: "Precision Engineered Suspension", 
       description: "Premium shock absorption meets precision braking—built to handle any terrain with confidence",
       image: "https://harmless-tapir-303.convex.cloud/api/storage/afd3f918-2e53-4d73-bf24-61edc025c3be"
     },
