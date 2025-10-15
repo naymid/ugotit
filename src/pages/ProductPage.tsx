@@ -482,7 +482,7 @@ function ImagePlaceholdersSection({ scooterId }: { scooterId: string }) {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
-              className="relative bg-zinc-900/50 border border-zinc-800 rounded-2xl overflow-hidden h-80 group hover:border-amber-500/50 transition-all"
+              className="relative bg-zinc-900/50 border border-zinc-800 rounded-2xl overflow-hidden aspect-square group hover:border-amber-500/50 transition-all"
             >
               {(placeholder as any).image ? (
                 <>
