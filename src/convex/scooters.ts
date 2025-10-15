@@ -107,7 +107,7 @@ export const getAllScooters = query({
         image: "https://harmless-tapir-303.convex.cloud/api/storage/213096d9-08dd-48ca-9b06-836331c5531e",
         rating: 4.7,
         reviews: 89,
-        inStock: true,
+        inStock: false,
       },
       {
         id: "elk-jubilee-x",
