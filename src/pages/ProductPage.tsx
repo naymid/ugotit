@@ -279,6 +279,9 @@ export default function ProductPage() {
       {/* Image Placeholders Section */}
       <ImagePlaceholdersSection />
 
+      {/* Customer Photos Section */}
+      <CustomerPhotosSection />
+
       {/* Related Products */}
       <RelatedProducts currentScooterId={scooter.id} />
 
@@ -492,6 +495,95 @@ function ImagePlaceholdersSection() {
             </motion.div>
           ))}
         </div>
+      </div>
+    </section>
+  );
+}
+
+function CustomerPhotosSection() {
+  const customerPhotos = [
+    {
+      image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800",
+      author: "Mike R.",
+      location: "Colorado",
+      caption: "Perfect for mountain trails!"
+    },
+    {
+      image: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=800",
+      author: "Sarah L.",
+      location: "California",
+      caption: "Love the power and range"
+    },
+    {
+      image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800",
+      author: "James K.",
+      location: "Texas",
+      caption: "Best investment I've made"
+    },
+    {
+      image: "https://images.unsplash.com/photo-1609137144813-7d9921338f24?w=800",
+      author: "Emily T.",
+      location: "Oregon",
+      caption: "Handles any terrain with ease"
+    },
+  ];
+
+  return (
+    <section className="py-24 bg-black">
+      <div className="container mx-auto px-4">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tighter mb-4">
+            CUSTOMER PHOTOS
+          </h2>
+          <p className="text-xl text-zinc-400">See how riders are enjoying their Elk scooters</p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {customerPhotos.map((photo, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
+              className="group relative bg-zinc-900/50 border border-zinc-800 rounded-2xl overflow-hidden hover:border-amber-500/50 transition-all cursor-pointer"
+            >
+              <div className="aspect-square relative overflow-hidden">
+                <img
+                  src={photo.image}
+                  alt={`Customer photo by ${photo.author}`}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              </div>
+              <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                <p className="text-white font-medium mb-1">{photo.author}</p>
+                <p className="text-zinc-400 text-sm mb-2">{photo.location}</p>
+                <p className="text-zinc-300 text-sm italic">"{photo.caption}"</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mt-12"
+        >
+          <p className="text-zinc-400 mb-4">Share your adventure with #ElkScooters</p>
+          <Button
+            variant="outline"
+            className="border-amber-500/30 text-amber-500 hover:bg-amber-500/10"
+          >
+            Upload Your Photo
+          </Button>
+        </motion.div>
       </div>
     </section>
   );
