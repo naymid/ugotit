@@ -568,7 +568,7 @@ function CustomerPhotosSection({ scooterId }: { scooterId: string }) {
         caption: "Takes on mountain trails like nothing else"
       },
       {
-        image: "https://harmless-tapir-303.convex.cloud/api/storage/0088d438-14e9-4fa5-b2f4-2084e6bd8c17",
+        image: "https://harmless-tapir-303.convex.cloud/api/storage/83785582-fb7e-4819-b6fb-d1b8429afb5f",
         author: "Brandon K.",
         location: "Sedona, AZ",
         caption: "The ThunderBolt lives up to its name - pure power"
