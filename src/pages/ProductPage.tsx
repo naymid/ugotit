@@ -280,7 +280,7 @@ export default function ProductPage() {
       <ImagePlaceholdersSection scooterId={scooter.id} />
 
       {/* Customer Photos Section */}
-      <CustomerPhotosSection />
+      <CustomerPhotosSection scooterId={scooter.id} />
 
       {/* Related Products */}
       <RelatedProducts currentScooterId={scooter.id} />
@@ -519,33 +519,65 @@ function ImagePlaceholdersSection({ scooterId }: { scooterId: string }) {
   );
 }
 
-function CustomerPhotosSection() {
-  const customerPhotos = [
-    {
-      image: "https://harmless-tapir-303.convex.cloud/api/storage/ec62f0aa-0684-4992-89c2-51fd0fb9f3ef",
-      author: "Marcus T.",
-      location: "Colorado Rockies",
-      caption: "Took it up to the mountain trails - handles like a dream!"
-    },
-    {
-      image: "https://harmless-tapir-303.convex.cloud/api/storage/ccc61561-572a-46a8-a02d-4921aff44d16",
-      author: "David K.",
-      location: "Malibu, CA",
-      caption: "Beach cruising has never been this fun"
-    },
-    {
-      image: "https://harmless-tapir-303.convex.cloud/api/storage/6ade2d48-0901-4239-a99a-61e49723070d",
-      author: "Sarah L.",
-      location: "Portland, OR",
-      caption: "Perfect for my daily commute and weekend adventures"
-    },
-    {
-      image: "https://harmless-tapir-303.convex.cloud/api/storage/0088d438-14e9-4fa5-b2f4-2084e6bd8c17",
-      author: "Ryan S.",
-      location: "Rocky Mountains, CO",
-      caption: "Exploring the mountain roads - this thing is a beast"
-    },
-  ];
+function CustomerPhotosSection({ scooterId }: { scooterId: string }) {
+  // Define product-specific customer photos
+  const productPhotos: Record<string, Array<{ image: string; author: string; location: string; caption: string }>> = {
+    "elk-cruiser": [
+      {
+        image: "https://harmless-tapir-303.convex.cloud/api/storage/ec62f0aa-0684-4992-89c2-51fd0fb9f3ef",
+        author: "Marcus T.",
+        location: "Colorado Rockies",
+        caption: "Took it up to the mountain trails - handles like a dream!"
+      },
+      {
+        image: "https://harmless-tapir-303.convex.cloud/api/storage/ccc61561-572a-46a8-a02d-4921aff44d16",
+        author: "David K.",
+        location: "Malibu, CA",
+        caption: "Beach cruising has never been this fun"
+      },
+      {
+        image: "https://harmless-tapir-303.convex.cloud/api/storage/6ade2d48-0901-4239-a99a-61e49723070d",
+        author: "Sarah L.",
+        location: "Portland, OR",
+        caption: "Perfect for my daily commute and weekend adventures"
+      },
+      {
+        image: "https://harmless-tapir-303.convex.cloud/api/storage/0088d438-14e9-4fa5-b2f4-2084e6bd8c17",
+        author: "Ryan S.",
+        location: "Rocky Mountains, CO",
+        caption: "Exploring the mountain roads - this thing is a beast"
+      },
+    ],
+    "elk-jubilee-x": [
+      {
+        image: "https://harmless-tapir-303.convex.cloud/api/storage/ec62f0aa-0684-4992-89c2-51fd0fb9f3ef",
+        author: "Jake M.",
+        location: "Moab, UT",
+        caption: "Conquered the toughest trails with ease!"
+      },
+      {
+        image: "https://harmless-tapir-303.convex.cloud/api/storage/0088d438-14e9-4fa5-b2f4-2084e6bd8c17",
+        author: "Alex P.",
+        location: "Sedona, AZ",
+        caption: "Off-road beast - nothing stops this machine"
+      },
+      {
+        image: "https://harmless-tapir-303.convex.cloud/api/storage/ccc61561-572a-46a8-a02d-4921aff44d16",
+        author: "Chris R.",
+        location: "Big Sur, CA",
+        caption: "Three wheels of pure adventure"
+      },
+      {
+        image: "https://harmless-tapir-303.convex.cloud/api/storage/6ade2d48-0901-4239-a99a-61e49723070d",
+        author: "Taylor B.",
+        location: "Austin, TX",
+        caption: "Storage space is a game-changer for long trips"
+      },
+    ],
+  };
+
+  // Get photos for current product or use default
+  const customerPhotos = productPhotos[scooterId] || productPhotos["elk-cruiser"];
 
   return (
     <section className="py-24 bg-black">
