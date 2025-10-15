@@ -93,19 +93,20 @@ export default function ProductPage() {
               <motion.div
                 initial={{ opacity: 0, x: -30 }}
                 animate={{ opacity: 1, x: 0 }}
-                className="relative bg-zinc-900/50 border border-zinc-800 rounded-2xl p-8 mb-4"
+                className="relative bg-gradient-to-br from-zinc-900/80 to-zinc-900/40 border border-zinc-800/50 rounded-3xl p-8 mb-4 overflow-hidden shadow-2xl"
               >
                 {!scooter.inStock && (
-                  <div className="absolute inset-0 bg-black/70 backdrop-blur-sm z-10 flex items-center justify-center rounded-2xl">
+                  <div className="absolute inset-0 bg-black/70 backdrop-blur-sm z-10 flex items-center justify-center rounded-3xl">
                     <Badge variant="destructive" className="text-2xl px-6 py-3">
                       SOLD OUT
                     </Badge>
                   </div>
                 )}
+                <div className="absolute inset-0 bg-gradient-to-t from-amber-500/5 to-transparent pointer-events-none" />
                 <img
                   src={productImages[selectedImage]}
                   alt={scooter.name}
-                  className="w-full h-96 object-contain"
+                  className="w-full h-96 object-contain relative z-10 drop-shadow-2xl"
                 />
               </motion.div>
 
@@ -118,14 +119,15 @@ export default function ProductPage() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: idx * 0.1 }}
                     onClick={() => setSelectedImage(idx)}
-                    className={`relative bg-zinc-900/50 border rounded-lg p-4 hover:border-amber-500/50 transition-all ${
-                      selectedImage === idx ? "border-amber-500" : "border-zinc-800"
+                    className={`relative bg-gradient-to-br from-zinc-900/80 to-zinc-900/40 border rounded-2xl p-4 hover:border-amber-500/50 hover:shadow-lg hover:shadow-amber-500/10 transition-all overflow-hidden group ${
+                      selectedImage === idx ? "border-amber-500 shadow-lg shadow-amber-500/20" : "border-zinc-800/50"
                     }`}
                   >
+                    <div className="absolute inset-0 bg-gradient-to-t from-amber-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                     <img
                       src={img}
                       alt={`${scooter.name} view ${idx + 1}`}
-                      className="w-full h-20 object-contain"
+                      className="w-full h-20 object-contain relative z-10 drop-shadow-lg"
                     />
                   </motion.button>
                 ))}
