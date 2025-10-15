@@ -509,13 +509,13 @@ function CustomerPhotosSection() {
       caption: "Took it up to the mountain trails - handles like a dream!"
     },
     {
-      image: "https://harmless-tapir-303.convex.cloud/api/storage/6ade2d48-0901-4239-a99a-61e49723070d",
+      image: "https://harmless-tapir-303.convex.cloud/api/storage/ccc61561-572a-46a8-a02d-4921aff44d16",
       author: "David K.",
       location: "Malibu, CA",
       caption: "Beach cruising has never been this fun"
     },
     {
-      image: "https://harmless-tapir-303.convex.cloud/api/storage/ccc61561-572a-46a8-a02d-4921aff44d16",
+      image: "https://harmless-tapir-303.convex.cloud/api/storage/6ade2d48-0901-4239-a99a-61e49723070d",
       author: "Sarah L.",
       location: "Portland, OR",
       caption: "Perfect for my daily commute and weekend adventures"
