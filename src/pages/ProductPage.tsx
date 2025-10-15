@@ -562,7 +562,7 @@ function CustomerPhotosSection({ scooterId }: { scooterId: string }) {
     ],
     "elk-thunderbolt": [
       {
-        image: "https://harmless-tapir-303.convex.cloud/api/storage/3bfa51b9-8982-4265-b90f-4ea6153ca3c1",
+        image: "https://harmless-tapir-303.convex.cloud/api/storage/09708ce1-368c-46bc-9f8e-a64ee9a912a2",
         author: "Jake M.",
         location: "Outer Banks, NC",
         caption: "The power on sand is incredible - 45 MPH feels amazing"
