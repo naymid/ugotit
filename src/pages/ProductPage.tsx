@@ -562,10 +562,10 @@ function CustomerPhotosSection({ scooterId }: { scooterId: string }) {
         caption: "Best beach cruiser I've ever owned"
       },
       {
-        image: "https://harmless-tapir-303.convex.cloud/api/storage/ec62f0aa-0684-4992-89c2-51fd0fb9f3ef",
+        image: "https://harmless-tapir-303.convex.cloud/api/storage/38e4a0e4-3e56-436b-ae6a-14772ecbc938",
         author: "Chris P.",
-        location: "Lake Tahoe, CA",
-        caption: "Takes on mountain trails like nothing else"
+        location: "Sacramento, CA",
+        caption: "Perfect for the neighborhood - looks amazing on my driveway"
       },
       {
         image: "https://harmless-tapir-303.convex.cloud/api/storage/83785582-fb7e-4819-b6fb-d1b8429afb5f",
