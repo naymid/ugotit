@@ -675,7 +675,7 @@ function CustomerPhotosSection({ scooterId }: { scooterId: string }) {
 function RelatedProducts({ currentScooterId }: { currentScooterId: string }) {
   const navigate = useNavigate();
   const scooters = useQuery(api.scooters.getAllScooters);
-  const relatedScooters = scooters?.filter((s) => s.id !== currentScooterId).slice(0, 3);
+  const relatedScooters = scooters?.filter((s) => s.id !== currentScooterId && s.inStock).slice(0, 3);
 
   if (!relatedScooters || relatedScooters.length === 0) return null;
 
