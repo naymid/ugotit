@@ -52,6 +52,12 @@ export const getAllScooters = query({
         rating: 4.9,
         reviews: 312,
         inStock: true,
+        additionalImages: [
+          "https://harmless-tapir-303.convex.cloud/api/storage/6918032b-f6e5-4b45-85d0-a5920ac217c3",
+          "https://harmless-tapir-303.convex.cloud/api/storage/366b910b-6378-451d-b8c3-e265f674e125",
+          "https://harmless-tapir-303.convex.cloud/api/storage/645bb1d2-d778-412b-ac89-9f5776d4af3c",
+          "https://harmless-tapir-303.convex.cloud/api/storage/5ff8061b-c078-47ac-9ab2-3dca4454f987",
+        ],
       },
       {
         id: "elk-thunderbolt",
@@ -172,6 +178,12 @@ export const getScootersByCategory = query({
         rating: 4.9,
         reviews: 312,
         inStock: true,
+        additionalImages: [
+          "https://harmless-tapir-303.convex.cloud/api/storage/6918032b-f6e5-4b45-85d0-a5920ac217c3",
+          "https://harmless-tapir-303.convex.cloud/api/storage/366b910b-6378-451d-b8c3-e265f674e125",
+          "https://harmless-tapir-303.convex.cloud/api/storage/645bb1d2-d778-412b-ac89-9f5776d4af3c",
+          "https://harmless-tapir-303.convex.cloud/api/storage/5ff8061b-c078-47ac-9ab2-3dca4454f987",
+        ],
       },
       {
         id: "elk-thunderbolt",
