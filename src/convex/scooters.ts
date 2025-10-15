@@ -124,6 +124,13 @@ export const getAllScooters = query({
         rating: 4.9,
         reviews: 156,
         inStock: true,
+        additionalImages: [
+          "https://harmless-tapir-303.convex.cloud/api/storage/76d6fe4e-5510-4f46-ae27-18238400512a",
+          "https://harmless-tapir-303.convex.cloud/api/storage/4635539e-3463-46f4-bb13-1eeaf887b7f0",
+          "https://harmless-tapir-303.convex.cloud/api/storage/41c388f6-e7e2-406c-9edc-ff2367ee9a72",
+          "https://harmless-tapir-303.convex.cloud/api/storage/d767b083-75af-45a0-a416-4e3f06a5294a",
+          "https://harmless-tapir-303.convex.cloud/api/storage/e71fca66-1533-41f6-827f-0c60c8879f9c",
+        ],
       },
     ];
   },
