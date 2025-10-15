@@ -565,7 +565,7 @@ function CustomerPhotosSection({ scooterId }: { scooterId: string }) {
         image: "https://harmless-tapir-303.convex.cloud/api/storage/09708ce1-368c-46bc-9f8e-a64ee9a912a2",
         author: "Jake M.",
         location: "Outer Banks, NC",
-        caption: "The power on sand is incredible - 45 MPH feels amazing"
+        caption: "Tackling hiking paths with ease - this scooter handles trails like a champ"
       },
       {
         image: "https://harmless-tapir-303.convex.cloud/api/storage/cccaa0e3-7b71-4043-a85f-d593986db521",
