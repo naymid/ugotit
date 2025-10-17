@@ -483,7 +483,6 @@ function ImagePlaceholdersSection({ scooterId }: { scooterId: string }) {
           <h2 className="text-4xl md:text-5xl font-bold tracking-tighter mb-4">
             SEE IT IN ACTION
           </h2>
-          <p className="text-xl text-zinc-400">More images coming soon</p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-8">
@@ -610,6 +609,32 @@ function CustomerPhotosSection({ scooterId }: { scooterId: string }) {
         author: "Amanda K.",
         location: "Indianapolis, IN",
         caption: "Love taking it out for weekend adventures"
+      },
+    ],
+    "elk-velocity": [
+      {
+        image: "https://harmless-tapir-303.convex.cloud/api/storage/6a6c83b8-cbc6-4bcd-b4a4-9eb24af5ad14",
+        author: "Alex M.",
+        location: "Blue Ridge Mountains, VA",
+        caption: "Perfect trail companion - handles every terrain with ease"
+      },
+      {
+        image: "https://harmless-tapir-303.convex.cloud/api/storage/d2a43309-44bc-4144-ae55-d964dc7db192",
+        author: "Jordan K.",
+        location: "Denver, CO",
+        caption: "Love the speed and agility on mountain paths"
+      },
+      {
+        image: "https://harmless-tapir-303.convex.cloud/api/storage/05c820a7-8486-4181-8ce8-b8dddbe7db2f",
+        author: "Sam R.",
+        location: "Malibu, CA",
+        caption: "Beach cruising has never been this smooth"
+      },
+      {
+        image: "https://harmless-tapir-303.convex.cloud/api/storage/c86f6504-3fa6-439f-907f-b4d4ffd5bf2e",
+        author: "Taylor B.",
+        location: "Austin, TX",
+        caption: "Incredible performance and style combined"
       },
     ],
   };
