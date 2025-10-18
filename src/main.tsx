@@ -1,6 +1,7 @@
 import { Toaster } from "@/components/ui/sonner";
 import { InstrumentationProvider } from "@/instrumentation.tsx";
 import AuthPage from "@/pages/Auth.tsx";
+import ProductPage from "@/pages/ProductPage.tsx";
 import { ConvexAuthProvider } from "@convex-dev/auth/react";
 import { ConvexReactClient } from "convex/react";
 import { StrictMode, useEffect } from "react";
@@ -49,6 +50,7 @@ createRoot(document.getElementById("root")!).render(
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/scooters" element={<AllScooters />} />
+            <Route path="/scooter/:id" element={<ProductPage />} />
             <Route path="/auth" element={<AuthPage redirectAfterAuth="/" />}/>
             <Route path="*" element={<NotFound />} />
           </Routes>

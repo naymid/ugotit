@@ -200,6 +200,7 @@ export default function AllScooters() {
 function ScooterCard({ scooter, index }: { scooter: any; index: number }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
+  const navigate = useNavigate();
 
   return (
     <motion.div
@@ -279,6 +280,7 @@ function ScooterCard({ scooter, index }: { scooter: any; index: number }) {
           <Button
             className="w-full bg-amber-500 hover:bg-amber-600 text-black font-bold"
             disabled={!scooter.inStock}
+            onClick={() => navigate(`/scooter/${scooter.id}`)}
           >
             View Details
             <ArrowRight className="ml-2 h-4 w-4" />

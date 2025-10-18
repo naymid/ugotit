@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { useNavigate } from "react-router";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
@@ -262,6 +263,7 @@ export default function Home() {
 function ScooterCard({ scooter, index, onViewDetails }: { scooter: any; index: number; onViewDetails: (id: string) => void }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
+  const navigate = useNavigate();
 
   return (
     <motion.div
@@ -336,7 +338,7 @@ function ScooterCard({ scooter, index, onViewDetails }: { scooter: any; index: n
           <Button 
             className="w-full bg-amber-500 hover:bg-amber-600 text-black font-bold" 
             disabled={!scooter.inStock}
-            onClick={() => onViewDetails("scooters")}
+            onClick={() => navigate(`/scooter/${scooter.id}`)}
           >
             View Details
             <ArrowRight className="ml-2 h-4 w-4" />
