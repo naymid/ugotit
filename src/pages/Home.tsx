@@ -4,6 +4,13 @@ import { useNavigate } from "react-router";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 import { Navbar } from "@/components/Navbar";
 import { ScooterQuiz } from "@/components/ScooterQuiz";
 import { useQuery } from "convex/react";
@@ -49,9 +56,11 @@ export default function Home() {
   });
 
   const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (typeof document !== 'undefined') {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
     }
   };
 
@@ -61,7 +70,7 @@ export default function Home() {
 
   return (
     <div className="bg-black text-white overflow-x-hidden">
-      <Navbar onNavigate={scrollToSection} />
+      <Navbar onNavigate={scrollToSection} onQuizOpen={() => setQuizOpen(true)} />
       
       {/* Hero Section */}
       <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
@@ -76,11 +85,11 @@ export default function Home() {
               key={i}
               className="absolute w-1 h-1 bg-amber-500/30 rounded-full"
               initial={{
-                x: Math.random() * window.innerWidth,
-                y: Math.random() * window.innerHeight,
+                x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1920),
+                y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 1080),
               }}
               animate={{
-                y: [null, Math.random() * window.innerHeight],
+                y: [null, Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 1080)],
                 opacity: [0, 1, 0],
               }}
               transition={{
@@ -354,9 +363,9 @@ function PerformanceSection() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   const stats = [
-    { label: "0–45 MPH Acceleration", value: 3.2, unit: "s" },
+    { label: "0–15 MPH Acceleration", value: 3.2, unit: "s" },
     { label: "Max Range", value: 30, unit: "miles" },
-    { label: "Motor Output", value: 6000, unit: "W" },
+    { label: "Motor Output", value: 6000, unit: "W", prefix: "Up to " },
     { label: "Peak Gradeability", value: 40, unit: "%" },
     { label: "Weight Capacity", value: 330, unit: "lbs" },
     { label: "Charge Time", value: 3, unit: "h", prefix: "<" },
@@ -408,7 +417,7 @@ function PerformanceSection() {
 
 function WhyElkSection() {
   const features = [
-    { icon: Zap, label: "Dual Motor Power", description: "Unmatched acceleration" },
+    { icon: Zap, label: "Powerful Motors", description: "Unmatched acceleration" },
     { icon: Shield, label: "Aircraft Grade Frame", description: "Military-spec durability" },
     { icon: Mountain, label: "All-Terrain Tires", description: "Conquer any surface" },
     { icon: Battery, label: "Fast Charge Tech", description: "Back on road faster" },
@@ -592,14 +601,18 @@ function CTASection({ onQuizOpen, onNavigate }: { onQuizOpen: () => void; onNavi
 }
 
 function Footer() {
+  const navigate = useNavigate();
   return (
     <footer className="bg-black border-t border-amber-500/20 py-16">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 sm:gap-12 mb-8 sm:mb-12">
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <Mountain className="h-8 w-8 text-amber-500" />
-              <span className="text-xl font-bold">ELK SCOOTERS</span>
+              <img 
+                src="https://harmless-tapir-303.convex.cloud/api/storage/c80a657d-9749-4299-bbe9-63f2324be9a2" 
+                alt="Elk Scooters Logo" 
+                className="h-8 w-auto object-contain"
+              />
             </div>
             <p className="text-zinc-400 text-sm">
               Electrifying the path less traveled.
@@ -618,18 +631,17 @@ function Footer() {
           <div>
             <h4 className="font-bold mb-4">Support</h4>
             <ul className="space-y-2 text-sm text-zinc-400">
-              <li><a href="#" className="hover:text-amber-500 transition-colors">Contact Us</a></li>
-              <li><a href="#" className="hover:text-amber-500 transition-colors">Warranty</a></li>
-              <li><a href="#" className="hover:text-amber-500 transition-colors">Shipping</a></li>
+              <li><button onClick={() => navigate("/contact")} className="hover:text-amber-500 transition-colors text-left">Contact Us</button></li>
+              <li><button onClick={() => navigate("/warranty")} className="hover:text-amber-500 transition-colors text-left">Warranty</button></li>
+              <li><button onClick={() => navigate("/shipping")} className="hover:text-amber-500 transition-colors text-left">Shipping</button></li>
             </ul>
           </div>
 
           <div>
             <h4 className="font-bold mb-4">Company</h4>
             <ul className="space-y-2 text-sm text-zinc-400">
-              <li><a href="#" className="hover:text-amber-500 transition-colors">About</a></li>
-              <li><a href="#" className="hover:text-amber-500 transition-colors">Blog</a></li>
-              <li><a href="#" className="hover:text-amber-500 transition-colors">Careers</a></li>
+              <li><button onClick={() => navigate("/about")} className="hover:text-amber-500 transition-colors text-left">About</button></li>
+              <li><button onClick={() => navigate("/blog")} className="hover:text-amber-500 transition-colors text-left">Blog</button></li>
             </ul>
           </div>
         </div>
@@ -637,9 +649,9 @@ function Footer() {
         <div className="border-t border-zinc-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-zinc-500">
           <p>© 2025 Elk Scooters. All rights reserved.</p>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-amber-500 transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-amber-500 transition-colors">Terms</a>
-            <a href="#" className="hover:text-amber-500 transition-colors">Cookies</a>
+            <button onClick={() => navigate("/privacy")} className="hover:text-amber-500 transition-colors">Privacy Policy</button>
+            <button onClick={() => navigate("/terms")} className="hover:text-amber-500 transition-colors">Terms</button>
+            <button onClick={() => navigate("/cookies")} className="hover:text-amber-500 transition-colors">Cookies</button>
           </div>
         </div>
       </div>

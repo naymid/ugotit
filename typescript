@@ -1,0 +1,3 @@
+const images = currentProductData.additionalImages.length > 0 
+    ? currentProductData.additionalImages 
+    : [scooter.image];

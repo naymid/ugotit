@@ -2,23 +2,119 @@ import { Toaster } from "@/components/ui/sonner";
 import { InstrumentationProvider } from "@/instrumentation.tsx";
 import AuthPage from "@/pages/Auth.tsx";
 import ProductPage from "@/pages/ProductPage.tsx";
+import AccessoryPage from "@/pages/AccessoryPage.tsx";
 import { ConvexAuthProvider } from "@convex-dev/auth/react";
 import { ConvexReactClient } from "convex/react";
 import { StrictMode, useEffect } from "react";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter, Route, Routes, useLocation } from "react-router";
+import { createBrowserRouter, RouterProvider, useLocation, Outlet } from "react-router";
 import "./index.css";
 import Home from "./pages/Home.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import AllScooters from "./pages/AllScooters.tsx";
+import WarrantyPage from "./pages/WarrantyPage.tsx";
+import ShippingPage from "./pages/ShippingPage.tsx";
+import Auth from "./pages/Auth.tsx";
+import About from "./pages/About.tsx";
+import Blog from "./pages/Blog.tsx";
+import BlogPost from "./pages/BlogPost.tsx";
+import PrivacyPolicy from "./pages/PrivacyPolicy.tsx";
+import Terms from "./pages/Terms.tsx";
+import Cookies from "./pages/Cookies.tsx";
+import Header from "./pages/Header.tsx";
+import Contact from "./pages/Contact.tsx";
 import "./types/global.d.ts";
 
 const convex = new ConvexReactClient(import.meta.env.VITE_CONVEX_URL as string);
 
+function RouterWrapper() {
+  return (
+    <>
+      <ScrollToTop />
+      <Outlet />
+    </>
+  );
+}
 
+const router = createBrowserRouter([
+  {
+    element: <RouterWrapper />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/scooters",
+        element: <AllScooters />,
+      },
+      {
+        path: "/scooter/:id",
+        element: <ProductPage />,
+      },
+      {
+        path: "/accessory/:id",
+        element: <AccessoryPage />,
+      },
+      {
+        path: "/warranty",
+        element: <WarrantyPage />,
+      },
+      {
+        path: "/shipping",
+        element: <ShippingPage />,
+      },
+      {
+        path: "/about",
+        element: <About />,
+      },
+      {
+        path: "/blog",
+        element: <Blog />,
+      },
+      {
+        path: "/blog/:id",
+        element: <BlogPost />,
+      },
+      {
+        path: "/privacy",
+        element: <PrivacyPolicy />,
+      },
+      {
+        path: "/terms",
+        element: <Terms />,
+      },
+      {
+        path: "/cookies",
+        element: <Cookies />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
+      },
+      {
+        path: "/header",
+        element: <Header />,
+      },
+      {
+        path: "/auth",
+        element: <Auth />,
+      },
+      {
+        path: "*",
+        element: <NotFound />,
+      },
+    ],
+  },
+]);
 
-function RouteSyncer() {
+function ScrollToTop() {
   const location = useLocation();
+  
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
   useEffect(() => {
     window.parent.postMessage(
       { type: "iframe-route-change", path: location.pathname },
@@ -40,22 +136,20 @@ function RouteSyncer() {
   return null;
 }
 
+function App() {
+  return (
+    <>
+      <RouterProvider router={router} />
+      <Toaster />
+    </>
+  );
+}
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <InstrumentationProvider>
       <ConvexAuthProvider client={convex}>
-        <BrowserRouter>
-          <RouteSyncer />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/scooters" element={<AllScooters />} />
-            <Route path="/scooter/:id" element={<ProductPage />} />
-            <Route path="/auth" element={<AuthPage redirectAfterAuth="/" />}/>
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-        <Toaster />
+        <App />
       </ConvexAuthProvider>
     </InstrumentationProvider>
   </StrictMode>,

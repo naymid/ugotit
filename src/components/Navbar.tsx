@@ -7,9 +7,10 @@ import { useNavigate } from "react-router";
 
 interface NavbarProps {
   onNavigate?: (id: string) => void;
+  onQuizOpen?: () => void;
 }
 
-export function Navbar({ onNavigate }: NavbarProps = {}) {
+export function Navbar({ onNavigate, onQuizOpen }: NavbarProps = {}) {
   const [scrolled, setScrolled] = useState(false);
   const navigate = useNavigate();
 
@@ -30,11 +31,27 @@ export function Navbar({ onNavigate }: NavbarProps = {}) {
   ];
 
   const handleNavClick = (href: string, isRoute?: boolean) => {
-    if (isRoute) {
+    if (href === "quiz") {
+      if (onQuizOpen) {
+        onQuizOpen();
+      }
+    } else if (isRoute) {
       navigate(`/${href}`);
+    } else if (href === "accessories") {
+      // Navigate to All Scooters page with hash for accessories section
+      navigate("/scooters#accessories");
+      // Small delay to ensure page loads before scrolling
+      setTimeout(() => {
+        if (typeof document !== 'undefined') {
+          const element = document.getElementById("accessories");
+          if (element) {
+            element.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        }
+      }, 100);
     } else if (onNavigate) {
       onNavigate(href);
-    } else {
+    } else if (typeof document !== 'undefined') {
       const element = document.getElementById(href);
       if (element) {
         element.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -57,10 +74,11 @@ export function Navbar({ onNavigate }: NavbarProps = {}) {
             onClick={() => navigate("/")}
             className="flex items-center gap-2 group cursor-pointer"
           >
-            <Mountain className="h-8 w-8 text-amber-500" />
-            <span className="text-xl font-bold text-white tracking-tight group-hover:text-amber-500 transition-colors">
-              ELK SCOOTERS
-            </span>
+            <img 
+              src="https://harmless-tapir-303.convex.cloud/api/storage/c80a657d-9749-4299-bbe9-63f2324be9a2" 
+              alt="Elk Scooters Logo" 
+              className="h-8 w-auto object-contain group-hover:opacity-80 transition-opacity"
+            />
           </button>
 
           {/* Desktop Navigation */}
