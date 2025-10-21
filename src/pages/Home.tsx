@@ -144,7 +144,7 @@ export default function Home() {
             <Button
               size="lg"
               variant="outline"
-              onClick={() => window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank")}
+              onClick={() => window.open("https://youtu.be/r5FKsGhGx28", "_blank")}
               className="border-2 border-amber-500/50 text-amber-500 hover:bg-amber-500/10 font-bold text-base sm:text-lg px-6 sm:px-8 py-5 sm:py-6 rounded-full w-full sm:w-auto"
             >
               <Play className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
