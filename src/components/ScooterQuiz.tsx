@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { X, RotateCcw, Eye, Zap, Mountain, Gauge, DollarSign } from "lucide-react";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
+import { useNavigate } from "react-router";
 
 interface QuizProps {
   open: boolean;
@@ -25,6 +26,7 @@ export function ScooterQuiz({ open, onClose }: QuizProps) {
   const [answers, setAnswers] = useState<QuizAnswers>({});
   const [showResults, setShowResults] = useState(false);
   const scooters = useQuery(api.scooters.getAllScooters);
+  const navigate = useNavigate();
 
   const questions = [
     {
@@ -212,7 +214,7 @@ export function ScooterQuiz({ open, onClose }: QuizProps) {
                       }`}
                     >
                       {!scooter.inStock && (
-                        <div className="absolute inset-0 bg-black/60 backdrop-blur-sm z-10 flex items-center justify-center">
+                        <div className="absolute inset-0 bg-black/40 z-10 flex items-center justify-center">
                           <Badge variant="destructive" className="text-lg px-4 py-2">
                             SOLD OUT
                           </Badge>
@@ -266,6 +268,10 @@ export function ScooterQuiz({ open, onClose }: QuizProps) {
                         <Button
                           className="w-full bg-amber-500 hover:bg-amber-600 text-black font-bold"
                           disabled={!scooter.inStock}
+                          onClick={() => {
+                            navigate(`/scooter/${scooter.id}`);
+                            onClose();
+                          }}
                         >
                           <Eye className="mr-2 h-4 w-4" />
                           View Details

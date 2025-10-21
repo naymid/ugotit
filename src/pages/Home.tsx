@@ -285,7 +285,7 @@ function ScooterCard({ scooter, index, onViewDetails }: { scooter: any; index: n
     >
       <Card className="bg-zinc-900/50 border-zinc-800 overflow-hidden hover:border-amber-500/50 transition-all duration-300">
         {!scooter.inStock && (
-          <div className="absolute inset-0 bg-black/70 backdrop-blur-sm z-10 flex items-center justify-center">
+          <div className="absolute inset-0 bg-black/40 z-10 flex items-center justify-center">
             <Badge variant="destructive" className="text-lg px-4 py-2">SOLD OUT</Badge>
           </div>
         )}
@@ -474,6 +474,8 @@ function WhyElkSection() {
 }
 
 function CategorySection({ onCategorySelect, onNavigate }: { onCategorySelect: (wheels: number) => void; onNavigate: (id: string) => void }) {
+  const navigate = useNavigate();
+  
   const categories = [
     {
       title: "Two Wheels",
@@ -492,14 +494,25 @@ function CategorySection({ onCategorySelect, onNavigate }: { onCategorySelect: (
     {
       title: "Accessories",
       subtitle: "Upgrade Your Ride",
-      count: "Coming Soon",
+      count: "Batteries & More",
       wheels: null,
-      image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800",
+      image: "https://harmless-tapir-303.convex.cloud/api/storage/775163ad-3508-47a0-a108-2ee23fc0d821",
+      isAccessories: true,
     },
   ];
 
-  const handleCategoryClick = (wheels: number | null) => {
-    if (wheels) {
+  const handleCategoryClick = (wheels: number | null, isAccessories?: boolean) => {
+    if (isAccessories) {
+      navigate("/scooters");
+      setTimeout(() => {
+        if (typeof document !== 'undefined') {
+          const element = document.getElementById('accessories');
+          if (element) {
+            element.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        }
+      }, 100);
+    } else if (wheels) {
       onCategorySelect(wheels);
       onNavigate("scooters");
     }
@@ -527,8 +540,8 @@ function CategorySection({ onCategorySelect, onNavigate }: { onCategorySelect: (
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
-              onClick={() => handleCategoryClick(category.wheels)}
-              className={`group relative overflow-hidden rounded-2xl h-64 sm:h-80 md:h-96 ${category.wheels ? 'cursor-pointer' : 'cursor-default opacity-60'}`}
+              onClick={() => handleCategoryClick(category.wheels, category.isAccessories)}
+              className="group relative overflow-hidden rounded-2xl h-64 sm:h-80 md:h-96 cursor-pointer"
             >
               <img
                 src={category.image}
@@ -542,9 +555,7 @@ function CategorySection({ onCategorySelect, onNavigate }: { onCategorySelect: (
                 </h3>
                 <p className="text-zinc-300 mb-1">{category.subtitle}</p>
                 <p className="text-sm text-amber-500 font-medium">{category.count}</p>
-                {category.wheels && (
-                  <ArrowRight className="h-6 w-6 text-amber-500 mt-4 group-hover:translate-x-2 transition-transform" />
-                )}
+                <ArrowRight className="h-6 w-6 text-amber-500 mt-4 group-hover:translate-x-2 transition-transform" />
               </div>
             </motion.div>
           ))}

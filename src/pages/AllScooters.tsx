@@ -351,7 +351,7 @@ function ScooterCard({ scooter, index }: { scooter: any; index: number }) {
     >
       <Card className="bg-zinc-900/50 border-zinc-800 overflow-hidden hover:border-amber-500/50 transition-all duration-300">
         {!scooter.inStock && (
-          <div className="absolute inset-0 bg-black/70 backdrop-blur-sm z-10 flex items-center justify-center">
+          <div className="absolute inset-0 bg-black/40 z-10 flex items-center justify-center">
             <Badge variant="destructive" className="text-lg px-4 py-2">
               SOLD OUT
             </Badge>

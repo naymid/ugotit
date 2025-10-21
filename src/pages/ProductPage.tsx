@@ -35,34 +35,51 @@ export default function ProductPage() {
   const scooters = useQuery(api.scooters.getAllScooters);
   const [selectedImage, setSelectedImage] = useState(0);
   const [batteryModalOpen, setBatteryModalOpen] = useState(false);
+  const [selectedVariant, setSelectedVariant] = useState(0);
   
   const scooter = scooters?.find((s) => s.id === id);
 
+  // Get current variant info
+  const currentVariant = (scooter as any)?.variants?.[selectedVariant];
+  const displayPrice = currentVariant?.price ?? scooter?.price;
+  const displayOriginalPrice = currentVariant?.originalPrice ?? scooter?.originalPrice;
+
   // Checkout URL mapping with battery options
-  const checkoutUrls: Record<string, { without_battery: string; with_battery: string }> = {
-    "elk-cruiser": {
-      without_battery: "https://elkscooters.myshopify.com/cart/40658101305404:1?discount=fall",
-      with_battery: "https://elkscooters.myshopify.com/cart/40658101305404:1,40922979991612:1?discount=fall"
-    },
-    "elk-thunderbolt": {
-      without_battery: "https://elkscooters.myshopify.com/cart/40658105040956:1?discount=fall",
-      with_battery: "https://elkscooters.myshopify.com/cart/40658105040956:1,40922979991612:1?discount=fall"
-    },
-    "elk-velocity": {
-      without_battery: "https://elkscooters.myshopify.com/cart/40627314524220:1?discount=fall",
-      with_battery: "https://elkscooters.myshopify.com/cart/40627314524220:1,40922979991612:1?discount=fall"
-    },
-    "elk-jubilee-x": {
-      without_battery: "https://elkscooters.myshopify.com/cart/40658103140412:1?discount=fall",
-      with_battery: "https://elkscooters.myshopify.com/cart/40658103140412:1,40922980057148:1?discount=fall"
+  const getCheckoutUrls = (productId: string, variantId?: string): { without_battery: string; with_battery: string } | null => {
+    const baseUrls: Record<string, { without_battery: string; with_battery: string }> = {
+      "elk-cruiser": {
+        without_battery: "https://elkscooters.myshopify.com/cart/40658101305404:1?discount=fall",
+        with_battery: "https://elkscooters.myshopify.com/cart/40658101305404:1,40922979991612:1?discount=fall"
+      },
+      "elk-thunderbolt": {
+        without_battery: "https://elkscooters.myshopify.com/cart/40658105040956:1?discount=fall",
+        with_battery: "https://elkscooters.myshopify.com/cart/40658105040956:1,40922979991612:1?discount=fall"
+      },
+      "elk-jubilee-x": {
+        without_battery: "https://elkscooters.myshopify.com/cart/40658103140412:1?discount=fall",
+        with_battery: "https://elkscooters.myshopify.com/cart/40658103140412:1,40922980057148:1?discount=fall"
+      }
+    };
+
+    // Handle elk-velocity with variants
+    if (productId === "elk-velocity" && variantId) {
+      return {
+        without_battery: `https://elkscooters.myshopify.com/cart/${variantId}:1?discount=fall`,
+        with_battery: `https://elkscooters.myshopify.com/cart/${variantId}:1,40922979991612:1?discount=fall`
+      };
     }
+
+    return baseUrls[productId] || null;
   };
 
   const handleBuyNow = () => {
     if (!scooter?.inStock || !id) return;
     
+    const variantId = currentVariant?.variantId;
+    const urls = getCheckoutUrls(id, variantId);
+    
     // Check if this scooter has battery upsell option
-    if (checkoutUrls[id]) {
+    if (urls) {
       setBatteryModalOpen(true);
     } else if ((scooter as any).checkoutUrl) {
       window.location.href = (scooter as any).checkoutUrl;
@@ -71,8 +88,13 @@ export default function ProductPage() {
 
   const handleBatteryChoice = (withBattery: boolean) => {
     setBatteryModalOpen(false);
-    if (id && checkoutUrls[id]) {
-      const url = withBattery ? checkoutUrls[id].with_battery : checkoutUrls[id].without_battery;
+    if (!id) return;
+    
+    const variantId = currentVariant?.variantId;
+    const urls = getCheckoutUrls(id, variantId);
+    
+    if (urls) {
+      const url = withBattery ? urls.with_battery : urls.without_battery;
       window.location.href = url;
     }
   };
@@ -342,7 +364,7 @@ export default function ProductPage() {
                 className="w-full h-auto object-contain rounded-xl"
               />
               {!scooter.inStock && (
-                <div className="absolute inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center rounded-2xl">
+                <div className="absolute inset-0 bg-black/40 flex items-center justify-center rounded-2xl">
                   <Badge variant="destructive" className="text-2xl px-6 py-3">
                     SOLD OUT
                   </Badge>
@@ -405,14 +427,42 @@ export default function ProductPage() {
               </span>
             </div>
 
+            {/* Variant Selector for Elk Velocity */}
+            {(scooter as any).variants && (scooter as any).variants.length > 0 && (
+              <div className="mb-6">
+                <label className="text-sm text-zinc-400 mb-2 block">Select Configuration</label>
+                <div className="grid grid-cols-2 gap-3">
+                  {(scooter as any).variants.map((variant: any, idx: number) => (
+                    <button
+                      key={idx}
+                      onClick={() => setSelectedVariant(idx)}
+                      className={`p-4 rounded-xl border-2 transition-all ${
+                        selectedVariant === idx
+                          ? "border-amber-500 bg-amber-500/10"
+                          : "border-zinc-800 bg-zinc-900/50 hover:border-zinc-600"
+                      }`}
+                    >
+                      <div className="text-lg font-bold mb-1">{variant.name}</div>
+                      <div className="text-amber-500 font-semibold">${variant.price.toFixed(2)}</div>
+                      {variant.originalPrice && (
+                        <div className="text-xs text-zinc-500 line-through">
+                          ${variant.originalPrice.toFixed(2)}
+                        </div>
+                      )}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
             <div className="mb-8">
-              {scooter.originalPrice && (
+              {displayOriginalPrice && (
                 <span className="text-2xl text-zinc-500 line-through mr-4">
-                  ${scooter.originalPrice.toFixed(2)}
+                  ${displayOriginalPrice.toFixed(2)}
                 </span>
               )}
               <span className="text-5xl font-bold text-amber-500">
-                ${scooter.price.toFixed(2)}
+                ${displayPrice.toFixed(2)}
               </span>
             </div>
 
