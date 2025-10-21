@@ -36,6 +36,7 @@ export default function ProductPage() {
   const [selectedImage, setSelectedImage] = useState(0);
   const [batteryModalOpen, setBatteryModalOpen] = useState(false);
   const [selectedVariant, setSelectedVariant] = useState(0);
+  const [thumbnailStartIndex, setThumbnailStartIndex] = useState(0);
   
   const scooter = scooters?.find((s) => s.id === id);
 
@@ -374,18 +375,47 @@ export default function ProductPage() {
             
             {/* Thumbnail Gallery */}
             {images.length > 1 && (
-              <div className="grid grid-cols-4 gap-3">
-                {images.map((img: string, idx: number) => (
-                  <button
-                    key={idx}
-                    onClick={() => setSelectedImage(idx)}
-                    className={`relative rounded-lg overflow-hidden border-2 transition-all ${
-                      selectedImage === idx ? "border-amber-500" : "border-zinc-800 hover:border-zinc-600"
-                    }`}
-                  >
-                    <img src={img} alt={`View ${idx + 1}`} className="w-full h-20 object-cover" />
-                  </button>
-                ))}
+              <div className="relative">
+                <div className="grid grid-cols-4 gap-3">
+                  {images.slice(thumbnailStartIndex, thumbnailStartIndex + 4).map((img: string, idx: number) => {
+                    const actualIndex = thumbnailStartIndex + idx;
+                    return (
+                      <button
+                        key={actualIndex}
+                        onClick={() => setSelectedImage(actualIndex)}
+                        className={`relative rounded-lg overflow-hidden border-2 transition-all ${
+                          selectedImage === actualIndex ? "border-amber-500" : "border-zinc-800 hover:border-zinc-600"
+                        }`}
+                      >
+                        <img src={img} alt={`View ${actualIndex + 1}`} className="w-full h-20 object-cover" />
+                      </button>
+                    );
+                  })}
+                </div>
+                
+                {/* Navigation Arrows */}
+                {images.length > 4 && (
+                  <div className="flex justify-center gap-2 mt-3">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setThumbnailStartIndex(Math.max(0, thumbnailStartIndex - 4))}
+                      disabled={thumbnailStartIndex === 0}
+                      className="border-zinc-800 text-zinc-400 hover:text-amber-500 hover:border-amber-500/50"
+                    >
+                      ← Previous
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setThumbnailStartIndex(Math.min(images.length - 4, thumbnailStartIndex + 4))}
+                      disabled={thumbnailStartIndex + 4 >= images.length}
+                      className="border-zinc-800 text-zinc-400 hover:text-amber-500 hover:border-amber-500/50"
+                    >
+                      Next →
+                    </Button>
+                  </div>
+                )}
               </div>
             )}
           </motion.div>
