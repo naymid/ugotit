@@ -36,9 +36,11 @@ export function Navbar({ onNavigate, onQuizOpen }: NavbarProps = {}) {
         onQuizOpen();
       }
     } else if (isRoute) {
-      window.location.href = `https://elkscooters.com/${href}`;
+      navigate(`/${href}`);
     } else if (href === "accessories") {
-      window.location.href = "https://elkscooters.com/scooters#accessories";
+      if (onNavigate) {
+        onNavigate(href);
+      }
     } else if (onNavigate) {
       onNavigate(href);
     } else if (typeof document !== 'undefined') {
@@ -61,7 +63,7 @@ export function Navbar({ onNavigate, onQuizOpen }: NavbarProps = {}) {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <button
-            onClick={() => window.location.href = "https://elkscooters.com/"}
+            onClick={() => navigate("/")}
             className="flex items-center gap-2 group cursor-pointer"
           >
             <img 
@@ -88,7 +90,7 @@ export function Navbar({ onNavigate, onQuizOpen }: NavbarProps = {}) {
           {/* CTA Button */}
           <div className="hidden lg:block">
             <Button 
-              onClick={() => window.location.href = "https://elkscooters.com/scooters"}
+              onClick={() => navigate("/scooters")}
               className="bg-amber-500 hover:bg-amber-600 text-black font-bold px-6 rounded-full"
             >
               Shop Now
@@ -117,7 +119,7 @@ export function Navbar({ onNavigate, onQuizOpen }: NavbarProps = {}) {
                   </motion.button>
                 ))}
                 <Button 
-                  onClick={() => window.location.href = "https://elkscooters.com/scooters"}
+                  onClick={() => navigate("/scooters")}
                   className="bg-amber-500 hover:bg-amber-600 text-black font-bold mt-4"
                 >
                   Shop Now

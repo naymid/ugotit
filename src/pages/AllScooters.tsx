@@ -237,7 +237,7 @@ export default function AllScooters() {
             </p>
           <Button
             size="lg"
-            onClick={() => window.location.href = "https://elkscooters.com/"}
+            onClick={() => navigate("/")}
             className="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-black font-bold text-base sm:text-lg px-8 sm:px-12 py-5 sm:py-6 rounded-full"
           >
             Back to Home
@@ -418,7 +418,7 @@ function ScooterCard({ scooter, index }: { scooter: any; index: number }) {
           <Button
             className="w-full bg-amber-500 hover:bg-amber-600 text-black font-bold"
             disabled={!scooter.inStock}
-            onClick={() => window.location.href = `https://elkscooters.com/scooter/${scooter.id}`}
+            onClick={() => navigate(`/scooter/${scooter.id}`)}
           >
             View Details
             <ArrowRight className="ml-2 h-4 w-4" />
@@ -506,7 +506,7 @@ function AccessoryCard({ accessory, index }: { accessory: any; index: number }) 
 
           <Button
             className="w-full bg-amber-500 hover:bg-amber-600 text-black font-bold"
-            onClick={() => window.location.href = `https://elkscooters.com/accessory/${accessory.id}`}
+            onClick={() => navigate(`/accessory/${accessory.id}`)}
           >
             View Details
             <ArrowRight className="ml-2 h-4 w-4" />
@@ -541,19 +541,19 @@ function Footer({ onWarrantyClick, onShippingClick }: { onWarrantyClick: () => v
             <h4 className="font-bold mb-4">Products</h4>
             <ul className="space-y-2 text-sm text-zinc-400">
               <li>
-                <a href="#" className="hover:text-amber-500 transition-colors">
+                <button onClick={() => navigate("/scooters?wheels=2")} className="hover:text-amber-500 transition-colors text-left">
                   Two Wheels
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#" className="hover:text-amber-500 transition-colors">
+                <button onClick={() => navigate("/scooters?wheels=3")} className="hover:text-amber-500 transition-colors text-left">
                   Three Wheels
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#" className="hover:text-amber-500 transition-colors">
+                <button onClick={() => navigate("/scooters")} className="hover:text-amber-500 transition-colors text-left">
                   Accessories
-                </a>
+                </button>
               </li>
             </ul>
           </div>
@@ -563,7 +563,7 @@ function Footer({ onWarrantyClick, onShippingClick }: { onWarrantyClick: () => v
             <ul className="space-y-2 text-sm text-zinc-400">
               <li>
                 <button
-                  onClick={() => window.location.href = "https://elkscooters.com/contact"}
+                  onClick={() => navigate("/contact")}
                   className="hover:text-amber-500 transition-colors text-left"
                 >
                   Contact Us
@@ -571,7 +571,7 @@ function Footer({ onWarrantyClick, onShippingClick }: { onWarrantyClick: () => v
               </li>
               <li>
                 <button
-                  onClick={() => window.location.href = "https://elkscooters.com/warranty"}
+                  onClick={() => navigate("/warranty")}
                   className="hover:text-amber-500 transition-colors text-left"
                 >
                   Warranty
@@ -579,7 +579,7 @@ function Footer({ onWarrantyClick, onShippingClick }: { onWarrantyClick: () => v
               </li>
               <li>
                 <button
-                  onClick={() => window.location.href = "https://elkscooters.com/shipping"}
+                  onClick={() => navigate("/shipping")}
                   className="hover:text-amber-500 transition-colors text-left"
                 >
                   Shipping
@@ -593,7 +593,7 @@ function Footer({ onWarrantyClick, onShippingClick }: { onWarrantyClick: () => v
             <ul className="space-y-2 text-sm text-zinc-400">
               <li>
                 <button
-                  onClick={() => window.location.href = "https://elkscooters.com/about"}
+                  onClick={() => navigate("/about")}
                   className="hover:text-amber-500 transition-colors text-left"
                 >
                   About
@@ -601,7 +601,7 @@ function Footer({ onWarrantyClick, onShippingClick }: { onWarrantyClick: () => v
               </li>
               <li>
                 <button
-                  onClick={() => window.location.href = "https://elkscooters.com/blog"}
+                  onClick={() => navigate("/blog")}
                   className="hover:text-amber-500 transition-colors text-left"
                 >
                   Blog
@@ -614,13 +614,13 @@ function Footer({ onWarrantyClick, onShippingClick }: { onWarrantyClick: () => v
         <div className="border-t border-zinc-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-zinc-500">
           <p>© 2025 Elk Scooters. All rights reserved.</p>
           <div className="flex gap-6">
-            <button onClick={() => window.location.href = "https://elkscooters.com/privacy"} className="hover:text-amber-500 transition-colors">
+            <button onClick={() => navigate("/privacy")} className="hover:text-amber-500 transition-colors">
               Privacy Policy
             </button>
-            <button onClick={() => window.location.href = "https://elkscooters.com/terms"} className="hover:text-amber-500 transition-colors">
+            <button onClick={() => navigate("/terms")} className="hover:text-amber-500 transition-colors">
               Terms
             </button>
-            <button onClick={() => window.location.href = "https://elkscooters.com/cookies"} className="hover:text-amber-500 transition-colors">
+            <button onClick={() => navigate("/cookies")} className="hover:text-amber-500 transition-colors">
               Cookies
             </button>
           </div>
