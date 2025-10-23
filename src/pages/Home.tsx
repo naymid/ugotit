@@ -135,7 +135,7 @@ export default function Home() {
           >
             <Button
               size="lg"
-              onClick={() => setQuizOpen(true)}
+              onClick={() => window.location.href = "https://elkscooters.com/"}
               className="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-black font-bold text-base sm:text-lg px-6 sm:px-8 py-5 sm:py-6 rounded-full shadow-lg shadow-amber-500/50 w-full sm:w-auto"
             >
               Find Your Scooter
@@ -347,7 +347,7 @@ function ScooterCard({ scooter, index, onViewDetails }: { scooter: any; index: n
           <Button 
             className="w-full bg-amber-500 hover:bg-amber-600 text-black font-bold" 
             disabled={!scooter.inStock}
-            onClick={() => navigate(`/scooter/${scooter.id}`)}
+            onClick={() => window.location.href = `https://elkscooters.com/scooter/${scooter.id}`}
           >
             View Details
             <ArrowRight className="ml-2 h-4 w-4" />
@@ -503,15 +503,7 @@ function CategorySection({ onCategorySelect, onNavigate }: { onCategorySelect: (
 
   const handleCategoryClick = (wheels: number | null, isAccessories?: boolean) => {
     if (isAccessories) {
-      navigate("/scooters");
-      setTimeout(() => {
-        if (typeof document !== 'undefined') {
-          const element = document.getElementById('accessories');
-          if (element) {
-            element.scrollIntoView({ behavior: "smooth", block: "start" });
-          }
-        }
-      }, 100);
+      window.location.href = "https://elkscooters.com/scooters#accessories";
     } else if (wheels) {
       onCategorySelect(wheels);
       onNavigate("scooters");
@@ -590,7 +582,7 @@ function CTASection({ onQuizOpen, onNavigate }: { onQuizOpen: () => void; onNavi
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
             <Button
               size="lg"
-              onClick={() => onNavigate("scooters")}
+              onClick={() => window.location.href = "https://elkscooters.com/scooters"}
               className="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-black font-bold text-base sm:text-lg px-8 sm:px-12 py-5 sm:py-6 rounded-full w-full sm:w-auto"
             >
               Shop All Scooters
@@ -642,17 +634,17 @@ function Footer() {
           <div>
             <h4 className="font-bold mb-4">Support</h4>
             <ul className="space-y-2 text-sm text-zinc-400">
-              <li><button onClick={() => navigate("/contact")} className="hover:text-amber-500 transition-colors text-left">Contact Us</button></li>
-              <li><button onClick={() => navigate("/warranty")} className="hover:text-amber-500 transition-colors text-left">Warranty</button></li>
-              <li><button onClick={() => navigate("/shipping")} className="hover:text-amber-500 transition-colors text-left">Shipping</button></li>
+              <li><button onClick={() => window.location.href = "https://elkscooters.com/contact"} className="hover:text-amber-500 transition-colors text-left">Contact Us</button></li>
+              <li><button onClick={() => window.location.href = "https://elkscooters.com/warranty"} className="hover:text-amber-500 transition-colors text-left">Warranty</button></li>
+              <li><button onClick={() => window.location.href = "https://elkscooters.com/shipping"} className="hover:text-amber-500 transition-colors text-left">Shipping</button></li>
             </ul>
           </div>
 
           <div>
             <h4 className="font-bold mb-4">Company</h4>
             <ul className="space-y-2 text-sm text-zinc-400">
-              <li><button onClick={() => navigate("/about")} className="hover:text-amber-500 transition-colors text-left">About</button></li>
-              <li><button onClick={() => navigate("/blog")} className="hover:text-amber-500 transition-colors text-left">Blog</button></li>
+              <li><button onClick={() => window.location.href = "https://elkscooters.com/about"} className="hover:text-amber-500 transition-colors text-left">About</button></li>
+              <li><button onClick={() => window.location.href = "https://elkscooters.com/blog"} className="hover:text-amber-500 transition-colors text-left">Blog</button></li>
             </ul>
           </div>
         </div>
@@ -660,9 +652,9 @@ function Footer() {
         <div className="border-t border-zinc-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-zinc-500">
           <p>© 2025 Elk Scooters. All rights reserved.</p>
           <div className="flex gap-6">
-            <button onClick={() => navigate("/privacy")} className="hover:text-amber-500 transition-colors">Privacy Policy</button>
-            <button onClick={() => navigate("/terms")} className="hover:text-amber-500 transition-colors">Terms</button>
-            <button onClick={() => navigate("/cookies")} className="hover:text-amber-500 transition-colors">Cookies</button>
+            <button onClick={() => window.location.href = "https://elkscooters.com/privacy"} className="hover:text-amber-500 transition-colors">Privacy Policy</button>
+            <button onClick={() => window.location.href = "https://elkscooters.com/terms"} className="hover:text-amber-500 transition-colors">Terms</button>
+            <button onClick={() => window.location.href = "https://elkscooters.com/cookies"} className="hover:text-amber-500 transition-colors">Cookies</button>
           </div>
         </div>
       </div>

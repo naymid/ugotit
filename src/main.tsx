@@ -23,6 +23,7 @@ import Terms from "./pages/Terms.tsx";
 import Cookies from "./pages/Cookies.tsx";
 import Header from "./pages/Header.tsx";
 import Contact from "./pages/Contact.tsx";
+import Success from "./pages/Success";
 import "./types/global.d.ts";
 
 const convex = new ConvexReactClient(import.meta.env.VITE_CONVEX_URL as string);
@@ -99,6 +100,10 @@ const router = createBrowserRouter([
       {
         path: "/auth",
         element: <Auth />,
+      },
+      {
+        path: "/success",
+        element: <Success />,
       },
       {
         path: "*",

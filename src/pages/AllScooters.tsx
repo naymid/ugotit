@@ -235,14 +235,14 @@ export default function AllScooters() {
             <p className="text-base sm:text-lg text-zinc-300 max-w-2xl mx-auto mb-8">
               Free shipping, 1-year warranty, and expert support on every scooter.
             </p>
-            <Button
-              size="lg"
-              onClick={() => navigate("/")}
-              className="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-black font-bold text-base sm:text-lg px-8 sm:px-12 py-5 sm:py-6 rounded-full"
-            >
-              Back to Home
-              <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
-            </Button>
+          <Button
+            size="lg"
+            onClick={() => window.location.href = "https://elkscooters.com/"}
+            className="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-black font-bold text-base sm:text-lg px-8 sm:px-12 py-5 sm:py-6 rounded-full"
+          >
+            Back to Home
+            <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
+          </Button>
           </motion.div>
         </div>
       </section>
@@ -418,7 +418,7 @@ function ScooterCard({ scooter, index }: { scooter: any; index: number }) {
           <Button
             className="w-full bg-amber-500 hover:bg-amber-600 text-black font-bold"
             disabled={!scooter.inStock}
-            onClick={() => navigate(`/scooter/${scooter.id}`)}
+            onClick={() => window.location.href = `https://elkscooters.com/scooter/${scooter.id}`}
           >
             View Details
             <ArrowRight className="ml-2 h-4 w-4" />
@@ -506,7 +506,7 @@ function AccessoryCard({ accessory, index }: { accessory: any; index: number }) 
 
           <Button
             className="w-full bg-amber-500 hover:bg-amber-600 text-black font-bold"
-            onClick={() => navigate(`/accessory/${accessory.id}`)}
+            onClick={() => window.location.href = `https://elkscooters.com/accessory/${accessory.id}`}
           >
             View Details
             <ArrowRight className="ml-2 h-4 w-4" />
@@ -563,7 +563,7 @@ function Footer({ onWarrantyClick, onShippingClick }: { onWarrantyClick: () => v
             <ul className="space-y-2 text-sm text-zinc-400">
               <li>
                 <button
-                  onClick={() => navigate("/contact")}
+                  onClick={() => window.location.href = "https://elkscooters.com/contact"}
                   className="hover:text-amber-500 transition-colors text-left"
                 >
                   Contact Us
@@ -571,7 +571,7 @@ function Footer({ onWarrantyClick, onShippingClick }: { onWarrantyClick: () => v
               </li>
               <li>
                 <button
-                  onClick={() => navigate("/warranty")}
+                  onClick={() => window.location.href = "https://elkscooters.com/warranty"}
                   className="hover:text-amber-500 transition-colors text-left"
                 >
                   Warranty
@@ -579,7 +579,7 @@ function Footer({ onWarrantyClick, onShippingClick }: { onWarrantyClick: () => v
               </li>
               <li>
                 <button
-                  onClick={() => navigate("/shipping")}
+                  onClick={() => window.location.href = "https://elkscooters.com/shipping"}
                   className="hover:text-amber-500 transition-colors text-left"
                 >
                   Shipping
@@ -593,7 +593,7 @@ function Footer({ onWarrantyClick, onShippingClick }: { onWarrantyClick: () => v
             <ul className="space-y-2 text-sm text-zinc-400">
               <li>
                 <button
-                  onClick={() => navigate("/about")}
+                  onClick={() => window.location.href = "https://elkscooters.com/about"}
                   className="hover:text-amber-500 transition-colors text-left"
                 >
                   About
@@ -601,7 +601,7 @@ function Footer({ onWarrantyClick, onShippingClick }: { onWarrantyClick: () => v
               </li>
               <li>
                 <button
-                  onClick={() => navigate("/blog")}
+                  onClick={() => window.location.href = "https://elkscooters.com/blog"}
                   className="hover:text-amber-500 transition-colors text-left"
                 >
                   Blog
@@ -614,13 +614,13 @@ function Footer({ onWarrantyClick, onShippingClick }: { onWarrantyClick: () => v
         <div className="border-t border-zinc-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-zinc-500">
           <p>© 2025 Elk Scooters. All rights reserved.</p>
           <div className="flex gap-6">
-            <button onClick={() => navigate("/privacy")} className="hover:text-amber-500 transition-colors">
+            <button onClick={() => window.location.href = "https://elkscooters.com/privacy"} className="hover:text-amber-500 transition-colors">
               Privacy Policy
             </button>
-            <button onClick={() => navigate("/terms")} className="hover:text-amber-500 transition-colors">
+            <button onClick={() => window.location.href = "https://elkscooters.com/terms"} className="hover:text-amber-500 transition-colors">
               Terms
             </button>
-            <button onClick={() => navigate("/cookies")} className="hover:text-amber-500 transition-colors">
+            <button onClick={() => window.location.href = "https://elkscooters.com/cookies"} className="hover:text-amber-500 transition-colors">
               Cookies
             </button>
           </div>

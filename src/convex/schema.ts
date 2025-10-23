@@ -32,12 +32,18 @@ const schema = defineSchema(
       role: v.optional(roleValidator), // role of the user. do not remove
     }).index("email", ["email"]), // index for the email. do not remove or modify
 
-    // add other tables here
-
-    // tableName: defineTable({
-    //   ...
-    //   // table fields
-    // }).index("by_field", ["field"])
+    // Payments table for Stripe integration
+    payments: defineTable({
+      status: v.string(),
+      stripeSessionId: v.optional(v.string()),
+      customerEmail: v.optional(v.string()),
+      amountTotal: v.optional(v.number()),
+      currency: v.optional(v.string()),
+      purchasedItems: v.optional(v.array(v.any())),
+      createdAt: v.number(),
+      updatedAt: v.number(),
+      fulfilledAt: v.optional(v.number()),
+    }),
   },
   {
     schemaValidation: false,

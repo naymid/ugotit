@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from "react-router";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
+import { toast } from "sonner";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -45,58 +46,70 @@ export default function ProductPage() {
   const displayPrice = currentVariant?.price ?? scooter?.price;
   const displayOriginalPrice = currentVariant?.originalPrice ?? scooter?.originalPrice;
 
-  // Checkout URL mapping with battery options
-  const getCheckoutUrls = (productId: string, variantId?: string): { without_battery: string; with_battery: string } | null => {
-    const baseUrls: Record<string, { without_battery: string; with_battery: string }> = {
-      "elk-cruiser": {
-        without_battery: "https://elkscooters.myshopify.com/cart/40658101305404:1?discount=fall",
-        with_battery: "https://elkscooters.myshopify.com/cart/40658101305404:1,40922979991612:1?discount=fall"
-      },
-      "elk-thunderbolt": {
-        without_battery: "https://elkscooters.myshopify.com/cart/40658105040956:1?discount=fall",
-        with_battery: "https://elkscooters.myshopify.com/cart/40658105040956:1,40922979991612:1?discount=fall"
-      },
-      "elk-jubilee-x": {
-        without_battery: "https://elkscooters.myshopify.com/cart/40658103140412:1?discount=fall",
-        with_battery: "https://elkscooters.myshopify.com/cart/40658103140412:1,40922980057148:1?discount=fall"
-      }
+  const getShopifyCheckoutUrl = (productId: string, variantId?: string, withBattery?: boolean) => {
+    const baseUrl = "https://elkscooters.myshopify.com/cart/";
+    
+    // Map product IDs to Shopify variant IDs
+    const shopifyVariants: Record<string, string> = {
+      "elk-velocity-one": "40627314524220",
+      "elk-velocity-two": "40627314786364",
+      "elk-cruiser": "40658101305404",
+      "elk-thunderbolt": "40658101338172",
+      "elk-jubilee-x": "40658101370940",
+      "elk-patriot": "40658101403708",
+      "elk-rover": "40658101436476",
+      "elk-jubilee": "40658101469244",
     };
 
     // Handle elk-velocity with variants
+    let productKey = productId;
     if (productId === "elk-velocity" && variantId) {
-      return {
-        without_battery: `https://elkscooters.myshopify.com/cart/${variantId}:1?discount=fall`,
-        with_battery: `https://elkscooters.myshopify.com/cart/${variantId}:1,40922979991612:1?discount=fall`
-      };
+      productKey = variantId === "40627314524220" ? "elk-velocity-one" : "elk-velocity-two";
     }
 
-    return baseUrls[productId] || null;
+    const productVariantId = shopifyVariants[productKey];
+    if (!productVariantId) return null;
+
+    let cartItems = `${productVariantId}:1`;
+    
+    // Add battery if requested (2-wheel or 3-wheel battery)
+    if (withBattery) {
+      const batteryVariantId = productId === "elk-jubilee-x" || productId === "elk-patriot" || productId === "elk-jubilee"
+        ? "40658101502012" // 3-wheel battery
+        : "40658101534780"; // 2-wheel battery
+      cartItems += `,${batteryVariantId}:1`;
+    }
+
+    return `${baseUrl}${cartItems}?discount=fall`;
   };
 
   const handleBuyNow = () => {
     if (!scooter?.inStock || !id) return;
     
     const variantId = currentVariant?.variantId;
-    const urls = getCheckoutUrls(id, variantId);
     
     // Check if this scooter has battery upsell option
-    if (urls) {
+    if (["elk-cruiser", "elk-thunderbolt", "elk-velocity", "elk-jubilee-x"].includes(id)) {
       setBatteryModalOpen(true);
-    } else if ((scooter as any).checkoutUrl) {
-      window.location.href = (scooter as any).checkoutUrl;
+    } else {
+      const checkoutUrl = getShopifyCheckoutUrl(id, variantId, false);
+      if (checkoutUrl) {
+        window.location.href = checkoutUrl;
+      } else {
+        toast.error("Checkout not configured for this product yet");
+      }
     }
   };
 
   const handleBatteryChoice = (withBattery: boolean) => {
     setBatteryModalOpen(false);
-    if (!id) return;
-    
     const variantId = currentVariant?.variantId;
-    const urls = getCheckoutUrls(id, variantId);
+    const checkoutUrl = getShopifyCheckoutUrl(id!, variantId, withBattery);
     
-    if (urls) {
-      const url = withBattery ? urls.with_battery : urls.without_battery;
-      window.location.href = url;
+    if (checkoutUrl) {
+      window.location.href = checkoutUrl;
+    } else {
+      toast.error("Checkout not configured for this product yet");
     }
   };
 
@@ -344,7 +357,7 @@ export default function ProductPage() {
       <div className="container mx-auto px-4 pt-32 pb-16">
         <Button
           variant="ghost"
-          onClick={() => navigate(-1)}
+          onClick={() => window.location.href = "https://elkscooters.com/scooters"}
           className="mb-8 text-amber-500 hover:text-amber-400"
         >
           <ArrowLeft className="mr-2 h-4 w-4" />
@@ -666,12 +679,12 @@ export default function ProductPage() {
                           ${related.price.toFixed(2)}
                         </span>
                       </div>
-                      <Button
-                        onClick={() => navigate(`/scooter/${related.id}`)}
-                        className="w-full bg-amber-500 hover:bg-amber-600 text-black font-bold"
-                      >
-                        View Details
-                      </Button>
+                  <Button
+                    onClick={() => window.location.href = `https://elkscooters.com/scooter/${related.id}`}
+                    className="w-full bg-amber-500 hover:bg-amber-600 text-black font-bold"
+                  >
+                    View Details
+                  </Button>
                     </div>
                   </Card>
                 </motion.div>
@@ -774,17 +787,17 @@ function Footer() {
             <h4 className="font-bold mb-4">Products</h4>
             <ul className="space-y-2 text-sm text-zinc-400">
               <li>
-                <button onClick={() => navigate("/scooters?wheels=2")} className="hover:text-amber-500 transition-colors text-left">
+                <button onClick={() => window.location.href = "https://elkscooters.com/scooters?wheels=2"} className="hover:text-amber-500 transition-colors text-left">
                   Two Wheels
                 </button>
               </li>
               <li>
-                <button onClick={() => navigate("/scooters?wheels=3")} className="hover:text-amber-500 transition-colors text-left">
+                <button onClick={() => window.location.href = "https://elkscooters.com/scooters?wheels=3"} className="hover:text-amber-500 transition-colors text-left">
                   Three Wheels
                 </button>
               </li>
               <li>
-                <button onClick={() => navigate("/scooters#accessories")} className="hover:text-amber-500 transition-colors text-left">
+                <button onClick={() => window.location.href = "https://elkscooters.com/scooters#accessories"} className="hover:text-amber-500 transition-colors text-left">
                   Accessories
                 </button>
               </li>
@@ -796,7 +809,7 @@ function Footer() {
             <ul className="space-y-2 text-sm text-zinc-400">
               <li>
                 <button
-                  onClick={() => navigate("/contact")}
+                  onClick={() => window.location.href = "https://elkscooters.com/contact"}
                   className="hover:text-amber-500 transition-colors text-left"
                 >
                   Contact Us
@@ -804,7 +817,7 @@ function Footer() {
               </li>
               <li>
                 <button
-                  onClick={() => navigate("/warranty")}
+                  onClick={() => window.location.href = "https://elkscooters.com/warranty"}
                   className="hover:text-amber-500 transition-colors text-left"
                 >
                   Warranty
@@ -812,7 +825,7 @@ function Footer() {
               </li>
               <li>
                 <button
-                  onClick={() => navigate("/shipping")}
+                  onClick={() => window.location.href = "https://elkscooters.com/shipping"}
                   className="hover:text-amber-500 transition-colors text-left"
                 >
                   Shipping
@@ -826,7 +839,7 @@ function Footer() {
             <ul className="space-y-2 text-sm text-zinc-400">
               <li>
                 <button
-                  onClick={() => navigate("/about")}
+                  onClick={() => window.location.href = "https://elkscooters.com/about"}
                   className="hover:text-amber-500 transition-colors text-left"
                 >
                   About
@@ -834,7 +847,7 @@ function Footer() {
               </li>
               <li>
                 <button
-                  onClick={() => navigate("/blog")}
+                  onClick={() => window.location.href = "https://elkscooters.com/blog"}
                   className="hover:text-amber-500 transition-colors text-left"
                 >
                   Blog
@@ -847,13 +860,13 @@ function Footer() {
         <div className="border-t border-zinc-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-zinc-500">
           <p>© 2025 Elk Scooters. All rights reserved.</p>
           <div className="flex gap-6">
-            <button onClick={() => navigate("/privacy")} className="hover:text-amber-500 transition-colors">
+            <button onClick={() => window.location.href = "https://elkscooters.com/privacy"} className="hover:text-amber-500 transition-colors">
               Privacy Policy
             </button>
-            <button onClick={() => navigate("/terms")} className="hover:text-amber-500 transition-colors">
+            <button onClick={() => window.location.href = "https://elkscooters.com/terms"} className="hover:text-amber-500 transition-colors">
               Terms
             </button>
-            <button onClick={() => navigate("/cookies")} className="hover:text-amber-500 transition-colors">
+            <button onClick={() => window.location.href = "https://elkscooters.com/cookies"} className="hover:text-amber-500 transition-colors">
               Cookies
             </button>
           </div>
