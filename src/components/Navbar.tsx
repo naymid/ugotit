@@ -35,12 +35,18 @@ export function Navbar({ onNavigate, onQuizOpen }: NavbarProps = {}) {
       if (onQuizOpen) {
         onQuizOpen();
       }
+    } else if (href === "accessories") {
+      navigate("/scooters");
+      setTimeout(() => {
+        if (typeof document !== 'undefined') {
+          const element = document.getElementById("accessories");
+          if (element) {
+            element.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        }
+      }, 100);
     } else if (isRoute) {
       navigate(`/${href}`);
-    } else if (href === "accessories") {
-      if (onNavigate) {
-        onNavigate(href);
-      }
     } else if (onNavigate) {
       onNavigate(href);
     } else if (typeof document !== 'undefined') {
