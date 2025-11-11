@@ -54,7 +54,7 @@ export default function ProductPage() {
       "elk-velocity-one": "40627314524220",
       "elk-velocity-two": "40627314786364",
       "elk-cruiser": "40658101305404",
-      "elk-thunderbolt": "40658105040956",
+      "elk-thunderbolt": "43661425639484",
       "elk-jubilee-x": "40658101370940",
       "elk-patriot": "40658101403708",
       "elk-rover": "40658101436476",
