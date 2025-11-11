@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 
 export function useAuth() {
   const { isLoading: isAuthLoading, isAuthenticated } = useConvexAuth();
+  // @ts-ignore - Convex type inference issue with circular dependencies
   const user = useQuery(api.users.currentUser);
   const { signIn, signOut } = useAuthActions();
 
