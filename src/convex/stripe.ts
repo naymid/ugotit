@@ -2,7 +2,7 @@
 
 import { v } from "convex/values";
 import { action } from "./_generated/server";
-import { api } from "./_generated/api";
+import { api, internal } from "./_generated/api";
 import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_KEY!, {
@@ -22,7 +22,7 @@ export const createCheckoutSession = action({
     cancelUrl: v.string(),
   },
   handler: async (ctx, args) => {
-    const paymentId = await ctx.runMutation(api.payments.createPaymentIntent, {
+    const paymentId = await ctx.runMutation(internal.payments.createPayment, {
       status: "pending",
     });
 
@@ -32,10 +32,10 @@ export const createCheckoutSession = action({
         price: item.priceId,
         quantity: item.quantity,
       })),
-      success_url: `${args.successUrl}?paymentId=${paymentId}&session_id={CHECKOUT_SESSION_ID}`,
+      success_url: `${args.successUrl}?paymentId=${String(paymentId)}&session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: args.cancelUrl,
       metadata: {
-        paymentId: paymentId,
+        paymentId: String(paymentId),
         ...args.metadata,
       },
       allow_promotion_codes: true,

@@ -1,5 +1,19 @@
-import { mutation, query } from "./_generated/server";
+import { mutation, query, internalMutation } from "./_generated/server";
 import { v } from "convex/values";
+
+export const createPayment = internalMutation({
+  args: {
+    status: v.string(),
+  },
+  handler: async (ctx, args) => {
+    const paymentId = await ctx.db.insert("payments", {
+      status: args.status,
+      createdAt: Date.now(),
+      updatedAt: Date.now(),
+    });
+    return paymentId;
+  },
+});
 
 export const createPaymentIntent = mutation({
   args: {
