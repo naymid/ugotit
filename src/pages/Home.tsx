@@ -211,8 +211,9 @@ export default function Home() {
       {/* Black Friday Sale Banner */}
       <section className="py-3 sm:py-4 bg-gradient-to-r from-amber-600 to-amber-500">
         <div className="container mx-auto px-4 text-center">
-          <p className="text-black font-bold text-sm sm:text-base md:text-lg">
-            🛍️ BLACK FRIDAY SALE — Save $250 With Code <span className="bg-black text-amber-500 px-2 sm:px-3 py-1 rounded text-xs sm:text-sm md:text-base">BLACKFRIDAY</span>
+          <p className="text-black font-bold text-sm sm:text-base md:text-lg flex items-center justify-center gap-2">
+            <TrendingUp className="h-5 w-5" />
+            BLACK FRIDAY SALE — Save $250 With Code <span className="bg-black text-amber-500 px-2 sm:px-3 py-1 rounded text-xs sm:text-sm md:text-base">BLACKFRIDAY</span>
           </p>
         </div>
       </section>
