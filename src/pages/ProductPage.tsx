@@ -80,7 +80,7 @@ export default function ProductPage() {
       cartItems += `,${batteryVariantId}:1`;
     }
 
-    return `${baseUrl}${cartItems}?discount=fall`;
+    return `${baseUrl}${cartItems}?discount=blackfriday`;
   };
 
   const handleBuyNow = () => {
