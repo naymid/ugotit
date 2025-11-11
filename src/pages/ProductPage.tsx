@@ -47,7 +47,7 @@ export default function ProductPage() {
   const displayOriginalPrice = currentVariant?.originalPrice ?? scooter?.originalPrice;
 
   const getShopifyCheckoutUrl = (productId: string, variantId?: string, withBattery?: boolean) => {
-    const baseUrl = "https://elkscooters.myshopify.com/cart/";
+    const baseUrl = "https://shop.elkscooters.com/cart/";
     
     // Map product IDs to Shopify variant IDs
     const shopifyVariants: Record<string, string> = {
